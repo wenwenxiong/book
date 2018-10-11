@@ -1,8 +1,8 @@
 ###基本模型
 ```
-➜  kong #ansible-playbook -i inventory ansible_install.yml
-➜  kong # 1. tag images, push to portus.teligen.com:xxxxxxxx/xsososg/jgowugoeu
-➜  kong # 2. upload yml to /etc/kubernetes/manifest/gowoguwoe.yml, kubectl create -f gowguowuogewgo.yml
+ansible-playbook -i inventory ansible_install.yml
+1. tag images, push to portus.teligen.com:xxxxxxxx/xsososg/jgowugoeu
+2. upload yml to /etc/kubernetes/manifest/gowoguwoe.yml, kubectl create -f gowguowuogewgo.yml
 ➜  kong tree
 .
 ├── ansible_install.yml
@@ -195,14 +195,84 @@ ansible-playbook -i local.ini logging.yaml --private-key=/root/.ssh/id_rsa
 ###openebs
 文件目录如下
 ```
+[root@portus openebs]# tree .
+.
+├── local.ini
+├── local.ini~
+├── openebs.retry
+├── openebs.yaml
+└── roles
+    ├── loadopenebsimages
+    │   ├── files
+    │   │   ├── openebs
+    │   │   │   ├── 1.tar.xz
+    │   │   │   ├── 2.tar.xz
+    │   │   │   ├── 3.tar.xz
+    │   │   │   ├── 4.tar.xz
+    │   │   │   ├── 5.tar.xz
+    │   │   │   ├── 6.tar.xz
+    │   │   │   ├── 7.tar.xz
+    │   │   │   ├── 8.tar.xz
+    │   │   │   └── 9.tar.xz
+    │   │   └── openebstagandpush.sh
+    │   └── tasks
+    │       ├── main.yaml
+    │       └── main.yaml~
+    └── openebs
+        └── tasks
+            ├── main.yaml
+            └── main.yaml~
+
+7 directories, 18 files
 ```
 执行以下命令安装
 ```
+ansible-playbook -i local.ini openebs.yaml
 ```
 ###istio
 文件目录如下
 ```
+[root@portus istio]# tree .
+.
+├── istio.retry
+├── istio.yaml
+├── local.ini
+└── roles
+    ├── istio
+    │   ├── defaults
+    │   │   └── all.yaml
+    │   ├── tasks
+    │   │   ├── main.yaml
+    │   │   └── main.yaml~
+    │   └── templates
+    │       ├── istio-certmanager-crds.yaml
+    │       ├── istio-crds.yaml
+    │       └── istio-crds.yaml~
+    └── loadistioimages
+        ├── files
+        │   ├── istio
+        │   │   ├── 10.tar.xz
+        │   │   ├── 11.tar.xz
+        │   │   ├── 13.tar.xz
+        │   │   ├── 14.tar.xz
+        │   │   ├── 15.tar.xz
+        │   │   ├── 1.tar.xz
+        │   │   ├── 2.tar.xz
+        │   │   ├── 3.tar.xz
+        │   │   ├── 4.tar.xz
+        │   │   ├── 5.tar.xz
+        │   │   ├── 6.tar.xz
+        │   │   ├── 7.tar.xz
+        │   │   ├── 8.tar.xz
+        │   │   └── 9.tar.xz
+        │   └── istiotagandpush.sh
+        └── tasks
+            ├── main.yaml
+            └── main.yaml~
+
+9 directories, 26 files
 ```
 执行以下命令安装
 ```
+ansible-playbook -i local.ini istio.yaml --extra-vars "@roles/istio/defaults/all.yaml"
 ```
