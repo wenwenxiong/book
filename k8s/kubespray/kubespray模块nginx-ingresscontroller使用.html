@@ -1,0 +1,2567 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>kubespray模块nginx-ingresscontroller使用 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="kubespray模块IPVS和kube-router使用.html" />
+    
+    
+    <link rel="prev" href="kubespray的download_run_once安装.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../docker/">
+            
+                <a href="../../docker/">
+            
+                    
+                    docker笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../docker/docker与VM功能行对比.html">
+            
+                <a href="../../docker/docker与VM功能行对比.html">
+            
+                    
+                    docker与VM功能行对比
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../docker/docker-hadoop.html">
+            
+                <a href="../../docker/docker-hadoop.html">
+            
+                    
+                    docker-hadoop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../docker/docker-hive.html">
+            
+                <a href="../../docker/docker-hive.html">
+            
+                    
+                    docker-hive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../docker/docker-kafka.html">
+            
+                <a href="../../docker/docker-kafka.html">
+            
+                    
+                    docker-kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../docker/docker-registry-ui-Portus试用.html">
+            
+                <a href="../../docker/docker-registry-ui-Portus试用.html">
+            
+                    
+                    docker-registry-ui-Portus试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../docker/nexus管理docker-registry试用.html">
+            
+                <a href="../../docker/nexus管理docker-registry试用.html">
+            
+                    
+                    nexus管理docker-registry试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../docker/docker-registry-manager.html">
+            
+                <a href="../../docker/docker-registry-manager.html">
+            
+                    
+                    docker-registry-manager试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../docker/Portus使用帮助.html">
+            
+                <a href="../../docker/Portus使用帮助.html">
+            
+                    
+                    Portus使用帮助
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../../docker/docker镜像与容器一些常用配置.html">
+            
+                <a href="../../docker/docker镜像与容器一些常用配置.html">
+            
+                    
+                    docker镜像与容器一些常用配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    kubernetes笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../应用容器化指南.html">
+            
+                <a href="../应用容器化指南.html">
+            
+                    
+                    应用容器化指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../应用在k8s上运行的几种网络模式.html">
+            
+                <a href="../应用在k8s上运行的几种网络模式.html">
+            
+                    
+                    应用在k8s上运行的几种网络模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../minikube安装.html">
+            
+                <a href="../minikube安装.html">
+            
+                    
+                    minikube安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../minikube集成calico网络.html">
+            
+                <a href="../minikube集成calico网络.html">
+            
+                    
+                    minikube集成calico网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../calico网络插件安装.html">
+            
+                <a href="../calico网络插件安装.html">
+            
+                    
+                    calico网络插件安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../kismatic使用.html">
+            
+                <a href="../kismatic使用.html">
+            
+                    
+                    kismatic使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../kismatic 离线安装kubernetes.html">
+            
+                <a href="../kismatic 离线安装kubernetes.html">
+            
+                    
+                    kismatic 离线安装kubernetes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../kismatic重新建构calico网络.html">
+            
+                <a href="../kismatic重新建构calico网络.html">
+            
+                    
+                    kismatic重新建构calico网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../kismatic升级calico3.1网络.html">
+            
+                <a href="../kismatic升级calico3.1网络.html">
+            
+                    
+                    kismatic升级calico3.1网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../kubernetes集成calico测试报告.html">
+            
+                <a href="../kubernetes集成calico测试报告.html">
+            
+                    
+                    kubernetes集成calico测试报告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../kismatic下calicoctl的使用.html">
+            
+                <a href="../kismatic下calicoctl的使用.html">
+            
+                    
+                    kismatic下calicoctl的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../kubernetes结合cilium.html">
+            
+                <a href="../kubernetes结合cilium.html">
+            
+                    
+                    kubernetes结合cilium
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../kismatic使用glusterfs遇到的问题.html">
+            
+                <a href="../kismatic使用glusterfs遇到的问题.html">
+            
+                    
+                    kismatic使用glusterfs遇到的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../kubeadm install kubernetes1.9.html">
+            
+                <a href="../kubeadm install kubernetes1.9.html">
+            
+                    
+                    kubeadm install kubernetes1.9
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../k8s-traefik.html">
+            
+                <a href="../k8s-traefik.html">
+            
+                    
+                    k8s-traefik
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../k8s动态使用glusterfs存储.html">
+            
+                <a href="../k8s动态使用glusterfs存储.html">
+            
+                    
+                    k8s动态使用glusterfs存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../k8s-hostpath存储使用.html">
+            
+                <a href="../k8s-hostpath存储使用.html">
+            
+                    
+                    k8s-hostpath存储使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../kubernetes结合portworx.html">
+            
+                <a href="../kubernetes结合portworx.html">
+            
+                    
+                    kubernetes结合portworx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../kubernetes结合openebs.html">
+            
+                <a href="../kubernetes结合openebs.html">
+            
+                    
+                    kubernetes结合openebs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../openebs存储helm安装.html">
+            
+                <a href="../openebs存储helm安装.html">
+            
+                    
+                    openebs存储helm安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.21" data-path="../kubernetes结合rook部署ceph集群.html">
+            
+                <a href="../kubernetes结合rook部署ceph集群.html">
+            
+                    
+                    kubernetes结合rook部署ceph集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.22" data-path="../kubernetes对自定义指标进行动态伸缩.html">
+            
+                <a href="../kubernetes对自定义指标进行动态伸缩.html">
+            
+                    
+                    kubernetes对自定义指标进行动态伸缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.23" data-path="../Kompose使用.html">
+            
+                <a href="../Kompose使用.html">
+            
+                    
+                    Kompose使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.24" data-path="../kubeapp使用.html">
+            
+                <a href="../kubeapp使用.html">
+            
+                    
+                    kubeapp使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.25" data-path="../k8s配置多集群访问.html">
+            
+                <a href="../k8s配置多集群访问.html">
+            
+                    
+                    k8s配置多集群访问
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.26" data-path="../查看kube-apiserver的健康检测.html">
+            
+                <a href="../查看kube-apiserver的健康检测.html">
+            
+                    
+                    查看kube-apiserver的健康检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.27" data-path="../k8s的RBAC授权模式.html">
+            
+                <a href="../k8s的RBAC授权模式.html">
+            
+                    
+                    k8s的RBAC授权模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.28" data-path="../kubernetes中pod的服务质量.html">
+            
+                <a href="../kubernetes中pod的服务质量.html">
+            
+                    
+                    kubernetes中pod的服务质量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.29" data-path="../k8s的services.html">
+            
+                <a href="../k8s的services.html">
+            
+                    
+                    k8s的services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.30" data-path="../k8s使用kong.html">
+            
+                <a href="../k8s使用kong.html">
+            
+                    
+                    k8s使用kong
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.31" data-path="../k8s中kong使用nfs-provisioner存储.html">
+            
+                <a href="../k8s中kong使用nfs-provisioner存储.html">
+            
+                    
+                    k8s中kong使用nfs-provisioner存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.32" data-path="../kong-dashboard使用.html">
+            
+                <a href="../kong-dashboard使用.html">
+            
+                    
+                    kong-dashboard使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.33" data-path="../k8s部署konga.html">
+            
+                <a href="../k8s部署konga.html">
+            
+                    
+                    k8s部署konga
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.34" data-path="../kong与konga数据库简单查询.html">
+            
+                <a href="../kong与konga数据库简单查询.html">
+            
+                    
+                    kong与konga数据库简单查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.35" data-path="../k8s-kong-ingresscontroller使用.html">
+            
+                <a href="../k8s-kong-ingresscontroller使用.html">
+            
+                    
+                    k8s-kong-ingresscontroller使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.36" data-path="../k8s离线部署监控和日志组件.html">
+            
+                <a href="../k8s离线部署监控和日志组件.html">
+            
+                    
+                    k8s离线部署监控和日志组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.37" data-path="../flund-bit日志收集套件相关配置.html">
+            
+                <a href="../flund-bit日志收集套件相关配置.html">
+            
+                    
+                    flund-bit日志收集套件相关配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.38" data-path="../k8s监控prometheus套件相关配置.html">
+            
+                <a href="../k8s监控prometheus套件相关配置.html">
+            
+                    
+                    k8s监控prometheus套件相关配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.39" data-path="../prometheus operator监控自定义服务.html">
+            
+                <a href="../prometheus operator监控自定义服务.html">
+            
+                    
+                    prometheus operator监控自定义服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.40" data-path="../kubernetes环境通用测试套件.html">
+            
+                <a href="../kubernetes环境通用测试套件.html">
+            
+                    
+                    kubernetes环境通用测试套件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.41" data-path="../kubernetes环境通用测试.html">
+            
+                <a href="../kubernetes环境通用测试.html">
+            
+                    
+                    kubernetes环境通用测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.42" data-path="../k8s开发测试运维小工具.html">
+            
+                <a href="../k8s开发测试运维小工具.html">
+            
+                    
+                    k8s开发测试运维小工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.43" data-path="../k8s Operator使用.html">
+            
+                <a href="../k8s Operator使用.html">
+            
+                    
+                    k8s Operator使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.44" data-path="../k8s Operator sdk使用.html">
+            
+                <a href="../k8s Operator sdk使用.html">
+            
+                    
+                    k8s Operator sdk使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.45" data-path="../k8s调度组件.html">
+            
+                <a href="../k8s调度组件.html">
+            
+                    
+                    k8s调度组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    kubespray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.46.1" data-path="kubespray模块分析.html">
+            
+                <a href="kubespray模块分析.html">
+            
+                    
+                    kubespray模块分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.2" data-path="kubespray下载组件镜像方法.html">
+            
+                <a href="kubespray下载组件镜像方法.html">
+            
+                    
+                    kubespray下载组件镜像方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.3" data-path="kubespray的download_run_once安装.html">
+            
+                <a href="kubespray的download_run_once安装.html">
+            
+                    
+                    kubespray的download_run_once安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.46.4" data-path="kubespray模块nginx-ingresscontroller使用.html">
+            
+                <a href="kubespray模块nginx-ingresscontroller使用.html">
+            
+                    
+                    kubespray模块nginx-ingresscontroller使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.5" data-path="kubespray模块IPVS和kube-router使用.html">
+            
+                <a href="kubespray模块IPVS和kube-router使用.html">
+            
+                    
+                    kubespray模块IPVS和kube-router使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.6" data-path="kubespray模块存储localvolume使用.html">
+            
+                <a href="kubespray模块存储localvolume使用.html">
+            
+                    
+                    kubespray模块存储localvolume使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.7" data-path="ansible部署ceph集群.html">
+            
+                <a href="ansible部署ceph集群.html">
+            
+                    
+                    ansible部署ceph集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.8" data-path="ansible部署ceph集群-ubuntu1604.html">
+            
+                <a href="ansible部署ceph集群-ubuntu1604.html">
+            
+                    
+                    ansible部署ceph集群-ubuntu1604
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.9" data-path="ceph集群监控.html">
+            
+                <a href="ceph集群监控.html">
+            
+                    
+                    ceph集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.10" data-path="kubespray的cephfs_provisioner使用.html">
+            
+                <a href="kubespray的cephfs_provisioner使用.html">
+            
+                    
+                    kubespray的cephfs_provisioner使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.11" data-path="kubespray的rbd_provisioner使用.html">
+            
+                <a href="kubespray的rbd_provisioner使用.html">
+            
+                    
+                    kubespray的rbd_provisioner使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.12" data-path="kubespray模块kubeadm使用.html">
+            
+                <a href="kubespray模块kubeadm使用.html">
+            
+                    
+                    kubespray模块kubeadm使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.13" data-path="harbor镜像仓库启用chartmuseum.html">
+            
+                <a href="harbor镜像仓库启用chartmuseum.html">
+            
+                    
+                    harbor镜像仓库启用chartmuseum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.14" data-path="kubespray多master节点中一master节点故障的影响.html">
+            
+                <a href="kubespray多master节点中一master节点故障的影响.html">
+            
+                    
+                    kubespray多master节点中一master节点故障的影响
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.15" data-path="kubespray调整coredns实例数方法.html">
+            
+                <a href="kubespray调整coredns实例数方法.html">
+            
+                    
+                    kubespray调整coredns实例数方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.16" data-path="kubespray2.8启用gpu特性.html">
+            
+                <a href="kubespray2.8启用gpu特性.html">
+            
+                    
+                    kubespray2.8启用gpu特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../helm/README.md">
+            
+                <span>
+            
+                    
+                    helm笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../helm/helm使用.html">
+            
+                <a href="../../helm/helm使用.html">
+            
+                    
+                    helm使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../helm/helm chart和chart repo.html">
+            
+                <a href="../../helm/helm chart和chart repo.html">
+            
+                    
+                    helm chart和chart repo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../helm/chart模板文件简单语法使用.html">
+            
+                <a href="../../helm/chart模板文件简单语法使用.html">
+            
+                    
+                    chart模板文件简单语法使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../helm/自定义helm的chart.html">
+            
+                <a href="../../helm/自定义helm的chart.html">
+            
+                    
+                    自定义helm的chart
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../helm/chartmuseum使用.html">
+            
+                <a href="../../helm/chartmuseum使用.html">
+            
+                    
+                    chartmuseum使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../helm/离线部署monocular.html">
+            
+                <a href="../../helm/离线部署monocular.html">
+            
+                    
+                    离线部署monocular
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../serviceMesh/">
+            
+                <a href="../../serviceMesh/">
+            
+                    
+                    serviceMesh服务网格笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../serviceMesh/ntp.html">
+            
+                <a href="../../serviceMesh/ntp.html">
+            
+                    
+                    ntp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../serviceMesh/serviceMesh.html">
+            
+                <a href="../../serviceMesh/serviceMesh.html">
+            
+                    
+                    serviceMesh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../serviceMesh/微服务解决方案调研.html">
+            
+                <a href="../../serviceMesh/微服务解决方案调研.html">
+            
+                    
+                    微服务解决方案调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../serviceMesh/istio安装实践.html">
+            
+                <a href="../../serviceMesh/istio安装实践.html">
+            
+                    
+                    istio安装实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../serviceMesh/istio流量管理.html">
+            
+                <a href="../../serviceMesh/istio流量管理.html">
+            
+                    
+                    istio流量管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../serviceMesh/istio配置请求速率限制.html">
+            
+                <a href="../../serviceMesh/istio配置请求速率限制.html">
+            
+                    
+                    istio配置请求速率限制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../serviceMesh/istio服务安全.html">
+            
+                <a href="../../serviceMesh/istio服务安全.html">
+            
+                    
+                    istio服务安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../../serviceMesh/istio实战.html">
+            
+                <a href="../../serviceMesh/istio实战.html">
+            
+                    
+                    istio实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../../serviceMesh/istio实战注入策略配置.html">
+            
+                <a href="../../serviceMesh/istio实战注入策略配置.html">
+            
+                    
+                    istio实战注入策略配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../../serviceMesh/istio监控，日志，调用跟踪.html">
+            
+                <a href="../../serviceMesh/istio监控，日志，调用跟踪.html">
+            
+                    
+                    istio监控，日志，调用跟踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../../serviceMesh/istio ansible部署.html">
+            
+                <a href="../../serviceMesh/istio ansible部署.html">
+            
+                    
+                    istio ansible部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../../serviceMesh/istio helm部署.html">
+            
+                <a href="../../serviceMesh/istio helm部署.html">
+            
+                    
+                    istio helm部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="../../serviceMesh/kubernetes istio api访问示例.html">
+            
+                <a href="../../serviceMesh/kubernetes istio api访问示例.html">
+            
+                    
+                    kubernetes istio api访问示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="../../serviceMesh/istio配套网络插件cilium.html">
+            
+                <a href="../../serviceMesh/istio配套网络插件cilium.html">
+            
+                    
+                    istio配套网络插件cilium
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="../../serviceMesh/istio1.0流量管理.html">
+            
+                <a href="../../serviceMesh/istio1.0流量管理.html">
+            
+                    
+                    istio1.0流量管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="../../serviceMesh/istio1.0 helm部署.html">
+            
+                <a href="../../serviceMesh/istio1.0 helm部署.html">
+            
+                    
+                    istio1.0 helm部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../serverless/">
+            
+                <a href="../../serverless/">
+            
+                    
+                    serverless笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../serverless/serverless.html">
+            
+                <a href="../../serverless/serverless.html">
+            
+                    
+                    serverless
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../serverless/kubeless使用.html">
+            
+                <a href="../../serverless/kubeless使用.html">
+            
+                    
+                    kubeless使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../serverless/fission使用.html">
+            
+                <a href="../../serverless/fission使用.html">
+            
+                    
+                    fission使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../openshift/">
+            
+                <a href="../../openshift/">
+            
+                    
+                    openshift笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../openshift/openshift使用.html">
+            
+                <a href="../../openshift/openshift使用.html">
+            
+                    
+                    openshift使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../openshift/openshift-buildconfig.html">
+            
+                <a href="../../openshift/openshift-buildconfig.html">
+            
+                    
+                    openshift-buildconfig
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../openshift/minishift使用.html">
+            
+                <a href="../../openshift/minishift使用.html">
+            
+                    
+                    minishift使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../openshift/minishift使用插件istio.html">
+            
+                <a href="../../openshift/minishift使用插件istio.html">
+            
+                    
+                    minishift使用插件istio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../openshift/keycloak与istio结合demo.html">
+            
+                <a href="../../openshift/keycloak与istio结合demo.html">
+            
+                    
+                    keycloak与istio结合demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../devops/">
+            
+                <a href="../../devops/">
+            
+                    
+                    devops笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../devops/devops工具.html">
+            
+                <a href="../../devops/devops工具.html">
+            
+                    
+                    devops工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../devops/devops工具简介与对比.html">
+            
+                <a href="../../devops/devops工具简介与对比.html">
+            
+                    
+                    devops工具简介与对比
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../devops/maven/">
+            
+                <a href="../../devops/maven/">
+            
+                    
+                    maven
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../../devops/maven/maven插件配置.html">
+            
+                <a href="../../devops/maven/maven插件配置.html">
+            
+                    
+                    maven插件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.2" data-path="../../devops/maven/mave使用私有仓库nexus.html">
+            
+                <a href="../../devops/maven/mave使用私有仓库nexus.html">
+            
+                    
+                    mave使用私有仓库nexus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.3" data-path="../../devops/maven/上传jar到nexus.html">
+            
+                <a href="../../devops/maven/上传jar到nexus.html">
+            
+                    
+                    上传jar到nexus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.4" data-path="../../devops/maven/Artifactory搭建Maven私服.html">
+            
+                <a href="../../devops/maven/Artifactory搭建Maven私服.html">
+            
+                    
+                    Artifactory搭建Maven私服
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../../devops/Jenkins-vs-gitlabci.html">
+            
+                <a href="../../devops/Jenkins-vs-gitlabci.html">
+            
+                    
+                    Jenkins-vs-gitlabci
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../../devops/gitlab ci 使用.html">
+            
+                <a href="../../devops/gitlab ci 使用.html">
+            
+                    
+                    gitlab ci 使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../../devops/gitlab-k8s.html">
+            
+                <a href="../../devops/gitlab-k8s.html">
+            
+                    
+                    gitlab-k8s
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../../devops/gitlab-runner issue.html">
+            
+                <a href="../../devops/gitlab-runner issue.html">
+            
+                    
+                    gitlab-runner issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../../devops/gitlab启用自带的docker-registry.html">
+            
+                <a href="../../devops/gitlab启用自带的docker-registry.html">
+            
+                    
+                    gitlab启用自带的docker-registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../../devops/gitlab添加已存在的kubernetes.html">
+            
+                <a href="../../devops/gitlab添加已存在的kubernetes.html">
+            
+                    
+                    gitlab添加已存在的kubernetes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../../devops/gitlab制作离线kubernetes插件安装.html">
+            
+                <a href="../../devops/gitlab制作离线kubernetes插件安装.html">
+            
+                    
+                    gitlab制作离线kubernetes插件安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../../devops/jenkins.html">
+            
+                <a href="../../devops/jenkins.html">
+            
+                    
+                    jenkins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="../../devops/jenkins-pipeline.html">
+            
+                <a href="../../devops/jenkins-pipeline.html">
+            
+                    
+                    jenkins-pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="../../devops/jenkins集成kubernetes环境cicd.html">
+            
+                <a href="../../devops/jenkins集成kubernetes环境cicd.html">
+            
+                    
+                    jenkins集成kubernetes环境cicd
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >kubespray模块nginx-ingresscontroller使用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="kubespray&#x4E2D;&#x63D2;&#x4EF6;nginx-ingresscontroller&#x542F;&#x7528;">kubespray&#x4E2D;&#x63D2;&#x4EF6;nginx-ingresscontroller&#x542F;&#x7528;</h3>
+<p>&#x5728;<code>kubespray</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;<code>inventory/rong/group_vars/k8s-cluster/addons.yml</code>&#x6587;&#x4EF6;&#x914D;&#x7F6E;&#x4E86;&#x63D2;&#x4EF6;&#x7684;&#x542F;&#x7528;&#x4E0E;&#x5173;&#x95ED;&#xFF0C;&#x4FEE;&#x6539;<code>addons.yml</code>&#x6587;&#x4EF6;&#xFF0C;&#x542F;&#x7528;&#x63D2;&#x4EF6;<code>nginx-ingresscontroller</code>&#x3002;</p>
+<pre><code>...
+# Nginx ingress controller deployment
+ingress_nginx_enabled: true
+# ingress_nginx_host_network: false
+# ingress_nginx_nodeselector:
+#   node-role.kubernetes.io/master: &quot;&quot;
+# ingress_nginx_namespace: &quot;ingress-nginx&quot;
+# ingress_nginx_insecure_port: 80
+# ingress_nginx_secure_port: 443
+# ingress_nginx_configmap:
+#   map-hash-bucket-size: &quot;128&quot;
+#   ssl-protocols: &quot;SSLv2&quot;
+# ingress_nginx_configmap_tcp_services:
+#   9000: &quot;default/example-go:8080&quot;
+# ingress_nginx_configmap_udp_services:
+#   53: &quot;kube-system/kube-dns:53&quot;
+...
+</code></pre><h3 id="nginx-ingresstroller&#x914D;&#x7F6E;4&#x5C42;&#x8D1F;&#x8F7D;">nginx-ingresstroller&#x914D;&#x7F6E;4&#x5C42;&#x8D1F;&#x8F7D;</h3>
+<p>&#x5728;Kuberetes&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x901A;&#x8FC7;Ingress&#x6765;&#x66B4;&#x9732;HTTP/HTTPS&#x7684;&#x670D;&#x52A1;&#x3002;&#x4F46;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x8FD8;&#x662F;&#x6709;&#x4E0D;&#x5C11;&#x5E94;&#x7528;&#x662F;TCP/UDP&#x957F;&#x8FDE;&#x63A5;&#x7684;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Ingress&#x6765;&#x66B4;&#x9732;&#x3002;
+&#x539F;&#x7406;
+Ingress Controller&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4F1A;&#x53BB;watch&#x4E24;&#x4E2A;configmap(&#x4E00;&#x4E2A;tcp&#xFF0C;&#x4E00;&#x4E2A; udp)&#xFF0C;&#x91CC;&#x9762;&#x8BB0;&#x5F55;&#x4E86;&#x540E;&#x9762;&#x9700;&#x8981;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x7684;TCP&#x7684;&#x670D;&#x52A1;&#x4EE5;&#x53CA;&#x66B4;&#x9732;&#x7684;&#x7AEF;&#x53E3;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;configmap&#x91CC;&#x9762;&#x7684;key-value&#x53D1;&#x751F;&#x53D8;&#x6362;&#xFF0C;Ingress controller&#x4F1A;&#x53BB;&#x66F4;&#x6539;Nginx&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x589E;&#x52A0;&#x5BF9;&#x5E94;&#x7684;TCP&#x7684;listen&#x7684;server&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x7684;&#x540E;&#x7AEF;&#x7684;upstream&#x3002;
+&#x5728;kubespray&#x90E8;&#x7F72;&#x4E2D;&#xFF0C;&#x542F;&#x7528;nginx-ingresscontroller&#x540E;
+&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;<code>ingress-nginx-controller</code>&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x4E2D;&#x5B58;&#x5728;&#x6307;&#x5B9A;tcp/udp&#x914D;&#x7F6E;<code>configmap</code>&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl get pod -n ingress-nginx
+NAME                               READY   STATUS    RESTARTS   AGE
+default-backend-749566fdb6-xkpl7   1/1     Running   1          17h
+ingress-nginx-controller-l66sd     1/1     Running   1          17h
+[root@node2 ~]#
+[root@node2 ~]# kubectl get pod ingress-nginx-controller-l66sd -n ingress-nginx -o yaml
+...
+  containers:
+  - args:
+    - /nginx-ingress-controller
+    - --default-backend-service=$(POD_NAMESPACE)/default-backend
+    - --configmap=$(POD_NAMESPACE)/ingress-nginx
+    - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+    - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+    - --annotations-prefix=nginx.ingress.kubernetes.io
+...
+</code></pre><p>&#x5B58;&#x5728;&#x4E24;&#x4E2A;&#x521D;&#x59CB;&#x7684;DATA&#x4E3A;&#x7A7A;&#x7684;configmap(&#x4E00;&#x4E2A;tcp-services&#xFF0C;&#x4E00;&#x4E2A; udp-services)&#x5982;&#x4E0B;</p>
+<pre><code>[root@node2 ~]# kubectl get configmap -n ingress-nginx
+NAME                              DATA   AGE
+ingress-controller-leader-nginx   0      17h
+ingress-nginx                     0      17h
+tcp-services                      0      17h
+udp-services                      0      17h
+[root@node2 ~]#
+</code></pre><p>&#x4E0B;&#x9762;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;UDP&#x4F8B;&#x5B50;&#x548C;&#x4E00;&#x4E2A;TCP&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;nginx-ingress&#x7684;4&#x5C42;&#x8D1F;&#x8F7D;&#x3002;</p>
+<h4 id="4&#x5C42;udp&#x8D1F;&#x8F7D;&#x914D;&#x7F6E;">4&#x5C42;UDP&#x8D1F;&#x8F7D;&#x914D;&#x7F6E;</h4>
+<p>&#x5728;kubernetes&#x73AF;&#x5883;&#x5B58;&#x5728;kube-dns&#x670D;&#x52A1;UDP&#x7AEF;&#x53E3;53&#x63D0;&#x4F9B;&#x96C6;&#x7FA4;&#x5185;&#x90E8;service&#x7684;DNS&#x89E3;&#x6790;&#x529F;&#x80FD;&#xFF0C;&#x4EE5;&#x6B64;&#x670D;&#x52A1;&#x4E3A;&#x4F8B;&#xFF0C;&#x901A;&#x8FC7;ingress-nginxcontroller&#x8FDB;&#x884C;4&#x5C42;&#x8D1F;&#x8F7D;&#x3002;
+1&#x3001;&#x9996;&#x5148;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;nginx&#x5E94;&#x7528;&#x6765;&#x9A8C;&#x8BC1;DNS&#x89E3;&#x6790;&#x529F;&#x80FD;</p>
+<pre><code>[root@node2 ~]# kubectl run nginx --image=nginx:1.7.9 --replicas=3
+kubectl run --generator=deployment/apps.v1beta1 is DEPRECATED and will be removed in a future version. Use kubectl create instead.
+deployment.apps/nginx created
+[root@node2 ~]# kubectl expose deployment nginx --port 80 
+service/nginx exposed
+[root@node2 ~]# kubectl get svc
+NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.233.0.1    &lt;none&gt;        443/TCP   22h
+nginx        ClusterIP   10.233.1.88   &lt;none&gt;        80/TCP    5s
+</code></pre><p>&#x4F7F;&#x7528;kube-dns&#x89E3;&#x6790;nginx&#x670D;&#x52A1;service&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl get svc -n kube-system
+NAME                   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)         AGE
+kube-dns               ClusterIP   10.233.0.3     &lt;none&gt;        53/UDP,53/TCP   18h
+kubernetes-dashboard   ClusterIP   10.233.31.59   &lt;none&gt;        443/TCP         21h
+[root@node2 ~]# host -t A nginx.default.svc.cluster.local 10.233.0.3
+Using domain server:
+Name: 10.233.0.3
+Address: 10.233.0.3#53
+Aliases:
+
+nginx.default.svc.cluster.local has address 10.233.1.88
+[root@node2 ~]#
+</code></pre><p>2&#x3001;nginx-ingresscontroller&#x914D;&#x7F6E;4&#x5C42;UDP&#x8D1F;&#x8F7D;
+&#x5728;&#x540D;&#x4E3A;udp-services&#x7684;configmap&#x4E2D;&#x52A0;&#x5165;&#x914D;&#x7F6E;</p>
+<pre><code>[root@node2 ~]# kubectl get configmaps udp-services -n ingress-nginx -o yaml
+...
+data:
+  &quot;53&quot;: kube-system/kube-dns:53
+...
+</code></pre><p>3&#x3001;&#x6D4B;&#x8BD5;&#x7531;ingress-controller&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;IP&#x89E3;&#x6790;DNS&#x529F;&#x80FD;</p>
+<pre><code>[root@node2 ~]# kubectl get pod -n ingress-nginx -o wide
+NAME                               READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE
+default-backend-749566fdb6-xkpl7   1/1     Running   1          18h   10.233.75.10   node2   &lt;none&gt;
+ingress-nginx-controller-l66sd     1/1     Running   1          18h   10.233.75.11   node2   &lt;none&gt;
+[root@node2 ~]# 
+[root@node2 ~]# host -t A nginx.default.svc.cluster.local 10.233.75.11
+Using domain server:
+Name: 10.233.75.11
+Address: 10.233.75.11#53
+Aliases: 
+
+nginx.default.svc.cluster.local has address 10.233.1.88
+[root@node2 ~]#
+</code></pre><p>&#x8FDB;&#x5165;ingress-controller&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x89C2;&#x5BDF;nginx.conf&#x914D;&#x7F6E;&#xFF0C;&#x53D1;&#x73B0;&#x751F;&#x6210;&#x4E86;UDP&#x7684;upstream&#x914D;&#x7F6E;&#x3002;</p>
+<pre><code>...
+stream {
+        log_format log_stream [$time_local] $protocol $status $bytes_sent $bytes_received $session_time;
+
+        access_log /var/log/nginx/access.log log_stream;
+
+        error_log  /var/log/nginx/error.log;
+
+        # TCP services
+
+        # UDP services
+
+        upstream udp-53-kube-system-kube-dns-53 {
+
+                server                  10.233.102.146:53;
+
+                server                  10.233.75.12:53;
+
+        }
+
+        server {
+
+                listen                  53 udp;
+
+                proxy_responses         1;
+                proxy_timeout           600s;
+                proxy_pass              udp-53-kube-system-kube-dns-53;
+        }
+
+}
+</code></pre><p>upstream&#x540E;&#x7AEF;&#x4E24;&#x4E2A;server&#x662F;kube-dns&#x7684;&#x4E24;&#x4E2A;pod&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;IP&#x548C;&#x7AEF;&#x53E3;&#xFF0C;nginx-ingresscontroller&#x76F4;&#x8FBE;pod&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x8BBF;&#x95EE;&#xFF0C;&#x4E0D;&#x518D;&#x7ECF;&#x8FC7;service IP&#x8D70;iptables&#x89C4;&#x5219;&#x5230;pod&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x8BBF;&#x95EE;&#x3002;
+&#x5220;&#x9664;kube-dns&#x5176;&#x4E2D;&#x4E00;&#x4E2A;pod&#x5B9E;&#x4F8B;&#xFF0C;&#x4F7F;&#x5176;pod&#x5B9E;&#x4F8B;&#x91CD;&#x5EFA;&#x83B7;&#x53D6;&#x65B0;&#x7684;IP&#x5730;&#x5740;&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl delete pod kube-dns-5cd856946f-266lz -n kube-system
+pod &quot;kube-dns-5cd856946f-266lz&quot; deleted
+[root@node2 ~]# kubectl get pod -n kube-system -o wide
+...
+kube-dns-5cd856946f-7ktsg                  3/3     Running   0          66s   10.233.75.17     node2   &lt;none&gt;
+kube-dns-5cd856946f-xfljb                  3/3     Running   3          18h   10.233.102.146   node1   &lt;none&gt;
+...
+</code></pre><p>&#x8FDB;&#x5165;nginx-ingresscontroller&#x7684;pod&#x5B9E;&#x4F8B;&#x67E5;&#x770B;nginx.conf&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x53D1;&#x73B0;upstream&#x66F4;&#x65B0;&#x4E3A;&#x65B0;&#x7684;IP&#x5730;&#x5740;&#x3002;</p>
+<pre><code>...
+upstream udp-53-kube-system-kube-dns-53 {
+
+                server                  10.233.102.146:53;
+
+                server                  10.233.75.17:53;
+
+        }
+...
+</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x901A;&#x8FC7;nginx-ingresscontroller&#x7684;pod&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;IP&#x8BBF;&#x95EE;4&#x5C42;&#x8D1F;&#x8F7D;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539;nginx-ingresscontroller&#x7684;service&#x628A;53&#x7AEF;&#x53E3;&#x5411;&#x5916;&#x66B4;&#x9732;&#x3002;&#x4ECE;&#x96C6;&#x7FA4;&#x5916;&#x8BBF;&#x95EE;DNS&#x670D;&#x52A1;&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl get svc -n ingress-nginx
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                  AGE
+default-backend   ClusterIP   10.233.9.71     &lt;none&gt;        80/TCP                                                   37h
+ingress-nginx     NodePort    10.233.24.252   &lt;none&gt;        80:30838/TCP,443:31693/TCP,53:30047/UDP,6379:32649/TCP   13h
+</code></pre><p>&#x5728;&#x5916;&#x90E8;&#x673A;&#x5668;<code>/etc/hosts</code>&#x914D;&#x7F6E;&#x4E00;&#x884C;<code>192.168.122.61 portus.teligen.com</code>&#xFF0C;&#x4ECE;&#x96C6;&#x7FA4;&#x5916;&#x8BBF;&#x95EE;DNS&#x670D;&#x52A1;&#x3002;</p>
+<pre><code>xww@xww-HP-EliteBook-8460p:~$
+xww@xww-HP-EliteBook-8460p:~$ dig @portus.teligen.com -p 30047 nginx.default.svc.cluster.local
+
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; @portus.teligen.com -p 30047 nginx.default.svc.cluster.local
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 9000
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;nginx.default.svc.cluster.local. IN    A
+
+;; ANSWER SECTION:
+nginx.default.svc.cluster.local. 30 IN  A       10.233.1.88
+
+;; Query time: 1 msec
+;; SERVER: 192.168.122.61#30047(192.168.122.61)
+;; WHEN: Thu Nov 29 10:39:35 CST 2018
+;; MSG SIZE  rcvd: 65
+
+xww@xww-HP-EliteBook-8460p:~$
+</code></pre><h4 id="4&#x5C42;tcp&#x8D1F;&#x8F7D;&#x914D;&#x7F6E;">4&#x5C42;TCP&#x8D1F;&#x8F7D;&#x914D;&#x7F6E;</h4>
+<p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;kubernetes&#x5B98;&#x7F51;&#x7684;guestbook&#x4F8B;&#x5B50;&#xFF0C;&#x4E00;&#x4E2A;&#x524D;&#x7AEF;web&#x5E94;&#x7528;&#x8BBF;&#x95EE;&#x540E;&#x7AEF;redis&#x96C6;&#x7FA4;&#xFF0C;redis&#x96C6;&#x7FA4;&#x66B4;&#x9732;TCP&#x7AEF;&#x53E3;6379,&#x901A;&#x8FC7;&#x628A;TCP&#x7AEF;&#x53E3;6379&#x901A;&#x8FC7;nginx-ingresscontroller&#x4EE3;&#x7406;&#x6765;&#x8BF4;&#x540D;4&#x5C42;TCP&#x8D1F;&#x8F7D;&#x3002;
+&#x6B65;&#x9AA4;&#x5982;&#x4E0B;
+1&#x3001;&#x914D;&#x7F6E;nginx-ingresscontroller&#x7684;&#x540D;&#x4E3A;tcp-services&#x7684;configmap&#x3002;
+2&#x3001;&#x8FD0;&#x884C;redis &#x96C6;&#x7FA4;&#x3002;
+3&#x3001;&#x9A8C;&#x8BC1;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x4E2D;nginx.conf&#x914D;&#x7F6E;&#x66F4;&#x6539;&#xFF0C;&#x4F7F;&#x7528;redis cli&#x5DE5;&#x5177;&#x8BBF;&#x95EE;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x7684;&#x4EE3;&#x7406;tcp&#x7AEF;&#x53E3;&#x9A8C;&#x8BC1;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;redis&#x96C6;&#x7FA4;&#x3002;</p>
+<p>&#x914D;&#x7F6E;nginx-ingresscontroller 4&#x5C42;TCP&#x8D1F;&#x8F7D;&#xFF0C;&#x5728;&#x540D;&#x4E3A;tcp-services&#x7684;configmap&#x52A0;&#x5165;&#x914D;&#x7F6E;</p>
+<pre><code>[root@node2 guestbook]# kubectl get configmap tcp-services -n ingress-nginx -o yaml
+apiVersion: v1
+data:
+  &quot;6379&quot;: default/redis-master:6379
+kind: ConfigMap
+...
+</code></pre><p>&#x8FD0;&#x884C;redis&#x96C6;&#x7FA4;</p>
+<pre><code>kubectl create -f redis-master-deployment.yaml -f redis-master-service.yaml -f redis-slave-deployment.yaml -f redis-slave-service.yaml
+</code></pre><p>&#x96C6;&#x7FA4;&#x542F;&#x52A8;&#x8FD0;&#x884C;</p>
+<pre><code>[root@node2 guestbook]# kubectl get pod -o wide
+NAME                            READY   STATUS    RESTARTS   AGE     IP               NODE    NOMINATED NODE
+redis-master-5df5c88598-x487p   1/1     Running   0          21m     10.233.102.152   node1   &lt;none&gt;
+redis-slave-699876c56d-9krgs    1/1     Running   0          20m     10.233.102.153   node1   &lt;none&gt;
+redis-slave-699876c56d-ldqmv    1/1     Running   0          20m     10.233.75.18     node2   &lt;none&gt;
+</code></pre><p>&#x8FDB;&#x5165;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x4E2D;&#x53D1;&#x73B0;nginx.conf&#x914D;&#x7F6E;&#x6709;&#x4E86;&#x66F4;&#x6539;&#xFF0C;&#x589E;&#x52A0;&#x4E86;tcp&#x7684;upstream&#x3002;</p>
+<pre><code>www-data@ingress-nginx-controller-l66sd:/etc/nginx$ cat nginx.conf
+...
+ # TCP services
+
+        upstream tcp-6379-default-redis-master-6379 {
+
+                server                  10.233.102.152:6379;
+
+        }
+        server {
+
+                listen                  6379;
+
+                proxy_timeout           600s;
+                proxy_pass              tcp-6379-default-redis-master-6379;
+
+        }
+
+        # UDP services
+
+        upstream udp-53-kube-system-kube-dns-53 {
+
+                server                  10.233.102.146:53;
+
+                server                  10.233.75.17:53;
+
+        }
+
+        server {
+
+                listen                  53 udp;
+
+                proxy_responses         1;
+                proxy_timeout           600s;
+                proxy_pass              udp-53-kube-system-kube-dns-53;
+        }
+...
+</code></pre><p>&#x4F7F;&#x7528;redis cli&#x5DE5;&#x5177;&#x8BBF;&#x95EE;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x7684;&#x4EE3;&#x7406;tcp&#x7AEF;&#x53E3;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;redis&#x96C6;&#x7FA4;&#x3002;
+&#x67E5;&#x770B;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x7684;IP&#x3002;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;nginx-ingresscontroller&#x7684;service&#x4ECE;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#xFF09;</p>
+<pre><code>[root@node2 guestbook]# kubectl get pod -n ingress-nginx -o wide
+NAME                               READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE
+default-backend-749566fdb6-xkpl7   1/1     Running   1          21h   10.233.75.10   node2   &lt;none&gt;
+ingress-nginx-controller-l66sd     1/1     Running   1          21h   10.233.75.11   node2   &lt;none&gt;
+</code></pre><p>redis&#x96C6;&#x7FA4;&#x5BB9;&#x5668;&#x4E2D;&#x6709;cli&#x5DE5;&#x5177;&#xFF0C;&#x8FDB;&#x5165;redis&#x5BB9;&#x5668;&#x4E2D;&#x6267;&#x884C;cli&#x5171;&#x8BBF;&#x95EE;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x7684;&#x4EE3;&#x7406;tcp&#x7AEF;&#x53E3;&#xFF0C;&#x4EE5;&#x9A8C;&#x8BC1;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;redis&#x96C6;&#x7FA4;&#x3002;</p>
+<pre><code>[root@node2 guestbook]# kubectl exec -it redis-master-5df5c88598-x487p /bin/bash
+[ root@redis-master-5df5c88598-x487p:/data ]$ 
+[ root@redis-master-5df5c88598-x487p:/data ]$ redis-cli -h 10.233.75.11 -p 6379 info server
+# Server
+redis_version:2.8.19
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:a74551038794e13f
+redis_mode:standalone
+os:Linux 3.10.0-862.el7.x86_64 x86_64
+arch_bits:64
+multiplexing_api:epoll
+gcc_version:4.8.2
+process_id:1
+run_id:5d2182be23ea070ccaf3631586a090f3da5b3505
+tcp_port:6379
+uptime_in_seconds:758
+uptime_in_days:0
+hz:10
+lru_clock:16672730
+config_file:/etc/redis/redis.conf
+[ root@redis-master-5df5c88598-x487p:/data ]$
+</code></pre><p>&#x7ED3;&#x679C;&#x8BF4;&#x660E;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;nginx-ingresscontroller&#x7684;&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x7684;&#x4EE3;&#x7406;tcp&#x7AEF;&#x53E3;&#x8BBF;&#x95EE;redis&#x96C6;&#x7FA4;&#x3002;
+&#x67E5;&#x770B;TCP6379&#x66B4;&#x9732;&#x7684;&#x5916;&#x90E8;<code>nodeport</code>&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl get svc -n ingress-nginx
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                  AGE
+default-backend   ClusterIP   10.233.9.71     &lt;none&gt;        80/TCP                                                   37h
+ingress-nginx     NodePort    10.233.24.252   &lt;none&gt;        80:30838/TCP,443:31693/TCP,53:30047/UDP,6379:32649/TCP   13h
+</code></pre><p>&#x4ECE;&#x96C6;&#x7FA4;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x3002;</p>
+<pre><code>[root@node2 guestbook]# kubectl exec -it redis-master-5df5c88598-x487p /bin/bash
+[ root@redis-master-5df5c88598-x487p:/data ]$ 
+[ root@redis-master-5df5c88598-x487p:/data ]$ redis-cli -h portus.teligen.com -p 32649 info server
+# Server
+redis_version:2.8.19
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:a74551038794e13f
+redis_mode:standalone
+os:Linux 3.10.0-862.el7.x86_64 x86_64
+arch_bits:64
+multiplexing_api:epoll
+gcc_version:4.8.2
+process_id:1
+run_id:5d2182be23ea070ccaf3631586a090f3da5b3505
+tcp_port:6379
+uptime_in_seconds:758
+uptime_in_days:0
+hz:10
+lru_clock:16672730
+config_file:/etc/redis/redis.conf
+[ root@redis-master-5df5c88598-x487p:/data ]$
+</code></pre><h3 id="7&#x5C42;&#x8D1F;&#x8F7D;&#xFF08;&#x57FA;&#x4E8E;hostname&#x548C;&#x5355;&#x72EC;&#x57FA;&#x4E8E;path&#xFF09;">7&#x5C42;&#x8D1F;&#x8F7D;&#xFF08;&#x57FA;&#x4E8E;hostname&#x548C;&#x5355;&#x72EC;&#x57FA;&#x4E8E;path&#xFF09;</h3>
+<h4 id="&#x57FA;&#x4E8E;path&#x7684;7&#x5C42;&#x8BBF;&#x95EE;">&#x57FA;&#x4E8E;path&#x7684;7&#x5C42;&#x8BBF;&#x95EE;</h4>
+<p>&#x521B;&#x5EFA;<code>ingress</code>&#x6587;&#x4EF6;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: &quot;false&quot;
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        backend:
+          serviceName: nginx
+          servicePort: 80
+</code></pre><p>&#x6CE8;&#xFF1A;&#x5FC5;&#x987B;&#x914D;&#x7F6E;&#x6CE8;&#x89E3;<code>nginx.ingress.kubernetes.io/rewrite-target</code>&#x548C;<code>nginx.ingress.kubernetes.io/ssl-redirect</code>&#x3002;
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF0C;&#x663E;&#x793A;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;path&#x8BBF;&#x95EE;http&#x5E94;&#x7528;&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl create -f path-nginx-ingress.yaml 
+ingress.extensions/test-ingress created
+[root@node2 ~]# 
+[root@node2 ~]# kubectl get svc -n ingress-nginx
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                  AGE
+default-backend   ClusterIP   10.233.9.71     &lt;none&gt;        80/TCP                                                   37h
+ingress-nginx     NodePort    10.233.24.252   &lt;none&gt;        80:30838/TCP,443:31693/TCP,53:30047/UDP,6379:32649/TCP   13h
+[root@node2 ~]# curl http://portus.teligen.com:30838/testpath
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+[root@node2 ~]#
+</code></pre><h4 id="&#x57FA;&#x4E8E;hostname&#x7684;7&#x5C42;&#x8BBF;&#x95EE;">&#x57FA;&#x4E8E;hostname&#x7684;7&#x5C42;&#x8BBF;&#x95EE;</h4>
+<p>&#x521B;&#x5EFA;<code>ingress</code>&#x6587;&#x4EF6;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: name-virtual-host-ingress
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+</code></pre><p>&#x6CE8;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x5916;&#x90E8;&#x6D4F;&#x89C8;&#x5668;&#x6240;&#x5728;&#x8282;&#x70B9;&#x4E0A;&#x914D;&#x7F6E;<code>/etc/hosts</code>&#x6587;&#x4EF6;&#x52A0;&#x5165;</p>
+<pre><code>k8smasterIP foo.bar.com
+</code></pre><p>&#x540E;&#xFF0C;&#x901A;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;<code>http://foo.bar.com</code>&#x8BBF;&#x95EE;&#x3002;
+<img src="nginxingress/01.png" alt="00" title="00">
+&#x4E5F;&#x53EF;&#x4EE5;&#x4EE5;&#x4E0B;&#x9762;&#x65B9;&#x5F0F;&#x8BBF;&#x95EE;&#x3002;</p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF0C;&#x663E;&#x793A;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;hostname&#x8BBF;&#x95EE;http&#x5E94;&#x7528;&#x3002;</p>
+<pre><code>[root@node2 ~]# kubectl create -f hostname-nginx-ingress.yaml 
+ingress.extensions/name-virtual-host-ingress created
+[root@node2 ~]#
+[root@node2 ~]# curl http://portus.teligen.com:30838 -H &quot;host:foo.bar.com&quot;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+  1 127.0.0.1   localhost
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+[root@node2 ~]#
+</code></pre><h4 id="echoserver&#x793A;&#x4F8B;&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7C7B;&#x578B;">echoserver&#x793A;&#x4F8B;&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7C7B;&#x578B;</h4>
+<p>&#x76EE;&#x524D;&#x652F;&#x6301;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7C7B;&#x578B;&#x6709;&#xFF08;&#x53C2;&#x8003;<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md#load-balance&#xFF09;" target="_blank">https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md#load-balance&#xFF09;</a></p>
+<ul>
+<li>&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#xFF08;round_robin&#xFF09;&#xFF1A;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x3002;</li>
+<li>&#x6700;&#x5C0F;&#x8D1F;&#x8F7D;&#xFF08;least_conn&#xFF09;&#xFF1A;&#x9700;&#x8981;&#x5728;ingress-nginx&#x5BB9;&#x5668;&#x7684;&#x542F;&#x52A8;&#x53C2;&#x6570;&#x52A0;&#x4E0A;<code>--enable-dynamic-configuration=false</code>&#x3002;</li>
+<li>&#x57FA;&#x4E8E;&#x54C8;&#x5E0C;&#x8DEF;&#x7531;&#xFF08;ip_hash&#xFF09;&#xFF1A;&#x9700;&#x8981;&#x5728;ingress-nginx&#x5BB9;&#x5668;&#x7684;&#x542F;&#x52A8;&#x53C2;&#x6570;&#x52A0;&#x4E0A;<code>--enable-dynamic-configuration=false</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x7528;&#x6CE8;&#x89E3;&#xFF08;Annotations&#xFF09;<code>nginx.ingress.kubernetes.io/upstream-hash-by</code>&#x5728;<code>ingress</code>&#x4E0A;&#x6307;&#x5B9A;&#x3002;</li>
+<li>peak EWMA&#xFF08;ewma&#xFF09;&#x3002;</li>
+</ul>
+<p>&#x6CE8;&#xFF1A;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#xFF1A;&#x4F9D;&#x6B21;&#x5411;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#x5206;&#x53D1;&#x8BF7;&#x6C42;
+&#x6700;&#x5C0F;&#x8D1F;&#x8F7D;&#xFF1A;&#x8BB0;&#x5F55;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x5C06;&#x6D41;&#x91CF;&#x5206;&#x53D1;&#x5230;&#x672A;&#x5B8C;&#x6210;&#x8BF7;&#x6C42;&#x6570;&#x6700;&#x5C11;&#x7684;&#x526F;&#x672C;
+peak EWMA&#xFF1A;&#x8BB0;&#x5F55;&#x6BCF;&#x4E2A;&#x526F;&#x672C;&#x8BF7;&#x6C42;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#xFF0C;&#x548C;&#x672A;&#x5B8C;&#x6210;&#x8BF7;&#x6C42;&#x6570;&#x52A0;&#x6743;&#xFF0C;&#x5206;&#x53D1;&#x7ED9;&#x6743;&#x503C;&#x6700;&#x5C0F;&#x7684;&#x526F;&#x672C;</p>
+<p>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7C7B;&#x578B;&#x914D;&#x7F6E;
+1&#x3001;&#x5728;&#x540D;&#x4E3A;ingress-nginx&#x7684;configmap&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x5168;&#x5C40;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7C7B;&#x578B;&#xFF0C;&#x914D;&#x7F6E;&#x503C;&#x53EF;&#x4EE5;&#x4E3A;<code>round_robin&#xFF0C;least_conn&#xFF0C;ip_hash&#xFF0C;ewma</code>&#x3002;
+2&#x3001;&#x5728;<code>ingress</code>&#x4F7F;&#x7528;&#x6CE8;&#x89E3;<code>nginx.ingress.kubernetes.io/load-balance</code>&#x914D;&#x7F6E;&#xFF0C;&#x914D;&#x7F6E;&#x503C;&#x53EF;&#x4EE5;&#x4E3A;<code>round_robin&#xFF0C;least_conn&#xFF0C;ip_hash&#xFF0C;ewma</code>&#x3002;
+3&#x3001;&#x5728;<code>ingress</code>&#x4F7F;&#x7528;&#x6CE8;&#x89E3;<code>nginx.ingress.kubernetes.io/upstream-hash-by</code>&#x914D;&#x7F6E;&#x57FA;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x503C;&#x7684;&#x54C8;&#x5E0C;&#xFF08;ip_hash&#xFF09;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x8BE5;&#x6CE8;&#x89E3;&#x4F1A;&#x8986;&#x76D6;&#x6CE8;&#x89E3;<code>nginx.ingress.kubernetes.io/load-balance</code>&#x914D;&#x7F6E;&#x3002;
+&#x6CE8;&#xFF1A;&#x4E0A;&#x9762;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x914D;&#x7F6E;&#x662F;&#x9488;&#x5BF9;7&#x5C42;&#x8D1F;&#x8F7D;&#xFF0C;4&#x5C42;&#x8D1F;&#x8F7D;&#x5F53;&#x524D;&#x7248;&#x672C;&#x53EA;&#x652F;&#x6301;&#x9ED8;&#x8BA4;&#x7684;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#x3002;</p>
+<h5 id="&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;udp&#x4F8B;&#x5B50;&#x6765;&#x6D4B;&#x8BD5;4&#x5C42;&#x8D1F;&#x8F7D;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#x3002;">&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;UDP&#x4F8B;&#x5B50;&#x6765;&#x6D4B;&#x8BD5;4&#x5C42;&#x8D1F;&#x8F7D;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#x3002;</h5>
+<p>&#x793A;&#x4F8B;<code>echoserver</code>&#x662F;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x81EA;&#x5DF1;&#x4E3B;&#x673A;&#x540D;&#x7684;UDP&#x5957;&#x63A5;&#x5B57;&#x5E94;&#x7528;&#xFF0C;&#x6587;&#x4EF6;&#x5982;&#x4E0B;<code>echoserver-deployment.yaml&#xFF0C;echoserver-svc.yaml</code>&#x3002;
+&#x6587;&#x4EF6;<code>echoserver-deployment.yaml</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echoserver
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: echoserver
+    spec:
+      containers:
+      - image: portus.teligen.com:5000/kubesprayns/echoserverpy:latest
+        imagePullPolicy: Always
+        name: echoserver
+        ports:
+        - containerPort: 31113
+</code></pre><p>&#x6587;&#x4EF6;<code>echoserver-svc.yaml</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+spec:
+  ports:
+  - port: 31113
+    targetPort: 31113
+    protocol: UDP
+  selector:
+    app: echoserver
+</code></pre><p>&#x7F16;&#x8F91;&#x540D;&#x4E3A;<code>udp-services</code>&#x7684;<code>configmap</code>&#x3002;
+&#x52A0;&#x5165;&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>&quot;31113&quot;: default/echoserver:31113
+</code></pre><p>&#x7136;&#x540E;&#x5728;&#x540D;&#x4E3A;<code>ingress-nginx</code>&#x7684;<code>service</code>&#x589E;&#x5F00;<code>31113 UDP</code>&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code>[root@node2 echoserver]# cat ingress-nginx-svc.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+    - name: udps1
+      port: 53
+      targetPort: 53
+      protocol: UDP
+    - name: echoserver
+      port: 31113
+      targetPort: 31113
+      protocol: UDP
+    - name: redis
+      port: 6379
+      targetPort: 6379
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+[root@node2 echoserver]#
+</code></pre><p>&#x83B7;&#x53D6;<code>ingress-nginx</code>&#x7684;<code>service</code>&#x5BF9;&#x5916;&#x66B4;&#x9732;<code>31113</code>&#x7684;&#x5BF9;&#x5E94;<code>nodePort</code>&#x7AEF;&#x53E3;&#x4E3A;<code>31694</code>&#x3002;</p>
+<pre><code>[root@node2 echoserver]# kubectl get svc -n ingress-nginx
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                                  AGE
+default-backend   ClusterIP   10.233.9.71     &lt;none&gt;        80/TCP                                                                   41h
+ingress-nginx     NodePort    10.233.24.252   &lt;none&gt;        80:30838/TCP,443:31693/TCP,53:30047/UDP,31113:31694/UDP,6379:32649/TCP   17h
+</code></pre><p>&#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;&#x811A;&#x672C;<code>client.py</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x76EE;&#x6807;&#x670D;&#x52A1;<code>IP</code>&#x548C;&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code>import socket
+import sys
+
+# Create a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+server_address = (&apos;portus.teligen.com&apos;, 31694)
+message = &apos;This is the message.  It will be repeated.&apos;
+
+try:
+
+    # Send data
+    print &gt;&gt;sys.stderr, &apos;sending &quot;%s&quot;&apos; % message
+    sent = sock.sendto(message, server_address)
+
+    # Receive response
+    print &gt;&gt;sys.stderr, &apos;waiting to receive&apos;
+    data, server = sock.recvfrom(4096)
+    print &gt;&gt;sys.stderr, &apos;received &quot;%s&quot;&apos; % data
+
+finally:
+    print &gt;&gt;sys.stderr, &apos;closing socket&apos;
+    sock.close()
+</code></pre><p>&#x8FD0;&#x884C;&#x547D;&#x4EE4;&#x5982;&#x4E0B;</p>
+<pre><code>while true; do python client.py; sleep 1; echo &quot;********************&quot;; done
+</code></pre><p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x6BCF;&#x6B21;&#x54CD;&#x5E94;&#x7684;<code>pod</code>&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x4E0D;&#x540C;&#xFF0C;&#x4EE5;&#x8F6E;&#x8BE2;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x3002;
+<img src="nginxingress/02.png" alt="02" title="02"></p>
+<h5 id="&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;echoserver&#x4F8B;&#x5B50;&#x6765;&#x6D4B;&#x8BD5;4&#x5C42;tcp&#x8D1F;&#x8F7D;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#x3002;">&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;echoserver&#x4F8B;&#x5B50;&#x6765;&#x6D4B;&#x8BD5;4&#x5C42;TCP&#x8D1F;&#x8F7D;&#x8F6E;&#x8BAD;&#x8C03;&#x5EA6;&#x3002;</h5>
+<p>&#x793A;&#x4F8B;<code>echoserver</code>&#x662F;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x81EA;&#x5DF1;&#x4E3B;&#x673A;&#x540D;&#x7684;TCP&#x5957;&#x63A5;&#x5B57;&#x5E94;&#x7528;&#xFF0C;&#x6587;&#x4EF6;&#x5982;&#x4E0B;<code>echoserver-deployment.yaml&#xFF0C;echoserver-svc.yaml</code>&#x3002;
+&#x6587;&#x4EF6;<code>echoserver-deployment.yaml</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echoservertcp
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: echoservertcp
+    spec:
+      containers:
+      - image: portus.teligen.com:5000/kubesprayns/echoservertcppy:latest
+        imagePullPolicy: Always
+        name: echoserver
+        ports:
+        - containerPort: 31114
+</code></pre><p>&#x6587;&#x4EF6;<code>echoserver-svc.yaml</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: echoservertcp
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 31114
+    targetPort: 31114
+    protocol: TCP
+  selector:
+    app: echoservertcp
+</code></pre><p>&#x7F16;&#x8F91;&#x540D;&#x4E3A;<code>tcp-services</code>&#x7684;<code>configmap</code>&#x3002;
+&#x52A0;&#x5165;&#x5185;&#x5BB9;&#x5982;&#x4E0B;</p>
+<pre><code>&quot;31114&quot;: default/echoservertcp:31114
+</code></pre><p>&#x7136;&#x540E;&#x5728;&#x540D;&#x4E3A;<code>ingress-nginx</code>&#x7684;<code>service</code>&#x589E;&#x5F00;<code>31114 TCP</code>&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code>[root@node2 echoserver]# cat ingress-nginx-svc.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+    - name: udps1
+      port: 53
+      targetPort: 53
+      protocol: UDP
+    - name: echoserver
+      port: 31113
+      targetPort: 31113
+      protocol: UDP
+    - name: redis
+      port: 6379
+      targetPort: 6379
+      protocol: TCP
+    - name: echoservertcp
+      nodePort: 31114
+      port: 31114
+      targetPort: 31114
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+[root@node2 echoserver]#
+</code></pre><p>&#x83B7;&#x53D6;<code>ingress-nginx</code>&#x7684;<code>service</code>&#x5BF9;&#x5916;&#x66B4;&#x9732;<code>31114</code>&#x7684;&#x5BF9;&#x5E94;<code>nodePort</code>&#x7AEF;&#x53E3;&#x4E3A;<code>31114</code>&#x3002;</p>
+<pre><code>[root@node2 httpechoserver]# kubectl get svc -n ingress-nginx
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                                                  AGE
+default-backend   ClusterIP   10.233.9.71     &lt;none&gt;        80/TCP                                                                                   43h
+ingress-nginx     NodePort    10.233.24.252   &lt;none&gt;        80:30838/TCP,443:31693/TCP,53:30047/UDP,31113:31694/UDP,6379:32649/TCP,31114:31114/TCP   18h
+</code></pre><p>&#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;&#x811A;&#x672C;<code>echoclient.py</code>&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF0C;&#x914D;&#x7F6E;&#x4E86;&#x76EE;&#x6807;&#x670D;&#x52A1;<code>IP</code>&#x548C;&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code>import socket
+import sys
+
+# Create a TCP/IP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect the socket to the port where the server is listening
+server_address = (&apos;portus.teligen.com&apos;, 31114)
+print &gt;&gt;sys.stderr, &apos;connecting to %s port %s&apos; % server_address
+sock.connect(server_address)
+try:
+
+    # Send data
+    message = &apos;M&apos;
+    print &gt;&gt;sys.stderr, &apos;sending &quot;%s&quot;&apos; % message
+    sock.sendall(message)
+
+    # Look for the response
+    amount_received = 0
+    amount_expected = len(message)
+
+    while amount_received &lt; amount_expected:
+        data = sock.recv(1600)
+        amount_received += len(data)
+        print &gt;&gt;sys.stderr, &apos;received &quot;%s&quot;&apos; % data
+
+finally:
+    print &gt;&gt;sys.stderr, &apos;closing socket&apos;
+    sock.close()
+</code></pre><p>&#x8FD0;&#x884C;&#x547D;&#x4EE4;&#x5982;&#x4E0B;</p>
+<pre><code>while true; do python echoclient.py; sleep 1; echo &quot;********************&quot;; done
+</code></pre><p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x6BCF;&#x6B21;&#x54CD;&#x5E94;&#x7684;<code>pod</code>&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x4E0D;&#x540C;&#xFF0C;&#x4EE5;&#x8F6E;&#x8BE2;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x3002;
+<img src="nginxingress/03.png" alt="03" title="03"></p>
+<h3 id="&#x4F7F;&#x7528;kubernetes&#x7684;service&#x7C7B;&#x578B;&#x4E3A;nodeport&#x66B4;&#x9732;4&#x5C42;&#x8D1F;&#x8F7D;">&#x4F7F;&#x7528;<code>kubernetes</code>&#x7684;<code>service</code>&#x7C7B;&#x578B;&#x4E3A;<code>NodePort</code>&#x66B4;&#x9732;4&#x5C42;&#x8D1F;&#x8F7D;</h3>
+<p>&#x4F7F;&#x7528;<code>service</code>&#x7C7B;&#x578B;&#x4E3A;<code>NodePort</code>&#x66B4;&#x9732;4&#x5C42;&#x8D1F;&#x8F7D;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B56;&#x7565;&#x662F;&#x968F;&#x673A;&#x9009;&#x53D6;&#x4E00;&#x4E2A;<code>pod</code>&#x5BB9;&#x5668;&#x5B9E;&#x4F8B;&#x6765;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x3002;
+<img src="nginxingress/05.png" alt="05" title="05">
+&#x5728;<code>service</code>&#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x52A0;&#x5165;&#x914D;&#x7F6E;<code>sessionAffinity: ClientIP</code>&#x3002;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B56;&#x7565;&#x4E3A;&#x57FA;&#x4E8E;&#x8BBF;&#x95EE;&#x5BA2;&#x6237;&#x7AEF;<code>IP</code>&#x7684;&#x54C8;&#x5E0C;&#x3002;</p>
+<pre><code>[root@node2 httpechoserver]# cat echoserver-svc.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoservertcp
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+  - port: 31114
+    targetPort: 31114
+    protocol: TCP
+  selector:
+    app: echoservertcp
+[root@node2 httpechoserver]#
+</code></pre><p><img src="nginxingress/04.png" alt="04" title="04"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="kubespray的download_run_once安装.html" class="navigation navigation-prev " aria-label="Previous page: kubespray的download_run_once安装">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="kubespray模块IPVS和kube-router使用.html" class="navigation navigation-next " aria-label="Next page: kubespray模块IPVS和kube-router使用">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"kubespray模块nginx-ingresscontroller使用","level":"1.3.46.4","depth":3,"next":{"title":"kubespray模块IPVS和kube-router使用","level":"1.3.46.5","depth":3,"path":"k8s/kubespray/kubespray模块IPVS和kube-router使用.md","ref":"k8s/kubespray/kubespray模块IPVS和kube-router使用.md","articles":[]},"previous":{"title":"kubespray的download_run_once安装","level":"1.3.46.3","depth":3,"path":"k8s/kubespray/kubespray的download_run_once安装.md","ref":"k8s/kubespray/kubespray的download_run_once安装.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"k8s/kubespray/kubespray模块nginx-ingresscontroller使用.md","mtime":"2018-12-03T03:28:21.624Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-08T00:17:12.205Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
