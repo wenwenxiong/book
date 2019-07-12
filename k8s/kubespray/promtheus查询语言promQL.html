@@ -1,0 +1,2153 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>promtheus查询语言promQL · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="k8s集群master与etcd故障备份与恢复.html" />
+    
+    
+    <link rel="prev" href="promtheus-operator监控kubernetes集群.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../docker/">
+            
+                <a href="../../docker/">
+            
+                    
+                    docker笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../docker/docker与VM功能行对比.html">
+            
+                <a href="../../docker/docker与VM功能行对比.html">
+            
+                    
+                    docker与VM功能行对比
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../docker/docker-hadoop.html">
+            
+                <a href="../../docker/docker-hadoop.html">
+            
+                    
+                    docker-hadoop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../docker/docker-hive.html">
+            
+                <a href="../../docker/docker-hive.html">
+            
+                    
+                    docker-hive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../docker/docker-kafka.html">
+            
+                <a href="../../docker/docker-kafka.html">
+            
+                    
+                    docker-kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../docker/docker-registry-ui-Portus试用.html">
+            
+                <a href="../../docker/docker-registry-ui-Portus试用.html">
+            
+                    
+                    docker-registry-ui-Portus试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../docker/nexus管理docker-registry试用.html">
+            
+                <a href="../../docker/nexus管理docker-registry试用.html">
+            
+                    
+                    nexus管理docker-registry试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../docker/docker-registry-manager.html">
+            
+                <a href="../../docker/docker-registry-manager.html">
+            
+                    
+                    docker-registry-manager试用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../docker/Portus使用帮助.html">
+            
+                <a href="../../docker/Portus使用帮助.html">
+            
+                    
+                    Portus使用帮助
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../../docker/docker镜像与容器一些常用配置.html">
+            
+                <a href="../../docker/docker镜像与容器一些常用配置.html">
+            
+                    
+                    docker镜像与容器一些常用配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    kubernetes笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../应用容器化指南.html">
+            
+                <a href="../应用容器化指南.html">
+            
+                    
+                    应用容器化指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../应用在k8s上运行的几种网络模式.html">
+            
+                <a href="../应用在k8s上运行的几种网络模式.html">
+            
+                    
+                    应用在k8s上运行的几种网络模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../minikube安装.html">
+            
+                <a href="../minikube安装.html">
+            
+                    
+                    minikube安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../minikube集成calico网络.html">
+            
+                <a href="../minikube集成calico网络.html">
+            
+                    
+                    minikube集成calico网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../calico网络插件安装.html">
+            
+                <a href="../calico网络插件安装.html">
+            
+                    
+                    calico网络插件安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../kismatic使用.html">
+            
+                <a href="../kismatic使用.html">
+            
+                    
+                    kismatic使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../kismatic 离线安装kubernetes.html">
+            
+                <a href="../kismatic 离线安装kubernetes.html">
+            
+                    
+                    kismatic 离线安装kubernetes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../kismatic重新建构calico网络.html">
+            
+                <a href="../kismatic重新建构calico网络.html">
+            
+                    
+                    kismatic重新建构calico网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../kismatic升级calico3.1网络.html">
+            
+                <a href="../kismatic升级calico3.1网络.html">
+            
+                    
+                    kismatic升级calico3.1网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../kubernetes集成calico测试报告.html">
+            
+                <a href="../kubernetes集成calico测试报告.html">
+            
+                    
+                    kubernetes集成calico测试报告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../kismatic下calicoctl的使用.html">
+            
+                <a href="../kismatic下calicoctl的使用.html">
+            
+                    
+                    kismatic下calicoctl的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../kubernetes结合cilium.html">
+            
+                <a href="../kubernetes结合cilium.html">
+            
+                    
+                    kubernetes结合cilium
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../kismatic使用glusterfs遇到的问题.html">
+            
+                <a href="../kismatic使用glusterfs遇到的问题.html">
+            
+                    
+                    kismatic使用glusterfs遇到的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../kubeadm install kubernetes1.9.html">
+            
+                <a href="../kubeadm install kubernetes1.9.html">
+            
+                    
+                    kubeadm install kubernetes1.9
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../k8s-traefik.html">
+            
+                <a href="../k8s-traefik.html">
+            
+                    
+                    k8s-traefik
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../k8s动态使用glusterfs存储.html">
+            
+                <a href="../k8s动态使用glusterfs存储.html">
+            
+                    
+                    k8s动态使用glusterfs存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../k8s-hostpath存储使用.html">
+            
+                <a href="../k8s-hostpath存储使用.html">
+            
+                    
+                    k8s-hostpath存储使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../kubernetes结合portworx.html">
+            
+                <a href="../kubernetes结合portworx.html">
+            
+                    
+                    kubernetes结合portworx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../kubernetes结合openebs.html">
+            
+                <a href="../kubernetes结合openebs.html">
+            
+                    
+                    kubernetes结合openebs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../openebs存储helm安装.html">
+            
+                <a href="../openebs存储helm安装.html">
+            
+                    
+                    openebs存储helm安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.21" data-path="../kubernetes结合rook部署ceph集群.html">
+            
+                <a href="../kubernetes结合rook部署ceph集群.html">
+            
+                    
+                    kubernetes结合rook部署ceph集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.22" data-path="../kubernetes对自定义指标进行动态伸缩.html">
+            
+                <a href="../kubernetes对自定义指标进行动态伸缩.html">
+            
+                    
+                    kubernetes对自定义指标进行动态伸缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.23" data-path="../Kompose使用.html">
+            
+                <a href="../Kompose使用.html">
+            
+                    
+                    Kompose使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.24" data-path="../kubeapp使用.html">
+            
+                <a href="../kubeapp使用.html">
+            
+                    
+                    kubeapp使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.25" data-path="../k8s配置多集群访问.html">
+            
+                <a href="../k8s配置多集群访问.html">
+            
+                    
+                    k8s配置多集群访问
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.26" data-path="../查看kube-apiserver的健康检测.html">
+            
+                <a href="../查看kube-apiserver的健康检测.html">
+            
+                    
+                    查看kube-apiserver的健康检测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.27" data-path="../k8s的RBAC授权模式.html">
+            
+                <a href="../k8s的RBAC授权模式.html">
+            
+                    
+                    k8s的RBAC授权模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.28" data-path="../kubernetes中pod的服务质量.html">
+            
+                <a href="../kubernetes中pod的服务质量.html">
+            
+                    
+                    kubernetes中pod的服务质量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.29" data-path="../k8s的services.html">
+            
+                <a href="../k8s的services.html">
+            
+                    
+                    k8s的services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.30" data-path="../k8s使用kong.html">
+            
+                <a href="../k8s使用kong.html">
+            
+                    
+                    k8s使用kong
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.31" data-path="../k8s中kong使用nfs-provisioner存储.html">
+            
+                <a href="../k8s中kong使用nfs-provisioner存储.html">
+            
+                    
+                    k8s中kong使用nfs-provisioner存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.32" data-path="../kong-dashboard使用.html">
+            
+                <a href="../kong-dashboard使用.html">
+            
+                    
+                    kong-dashboard使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.33" data-path="../k8s部署konga.html">
+            
+                <a href="../k8s部署konga.html">
+            
+                    
+                    k8s部署konga
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.34" data-path="../kong与konga数据库简单查询.html">
+            
+                <a href="../kong与konga数据库简单查询.html">
+            
+                    
+                    kong与konga数据库简单查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.35" data-path="../k8s-kong-ingresscontroller使用.html">
+            
+                <a href="../k8s-kong-ingresscontroller使用.html">
+            
+                    
+                    k8s-kong-ingresscontroller使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.36" data-path="../k8s离线部署监控和日志组件.html">
+            
+                <a href="../k8s离线部署监控和日志组件.html">
+            
+                    
+                    k8s离线部署监控和日志组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.37" data-path="../flund-bit日志收集套件相关配置.html">
+            
+                <a href="../flund-bit日志收集套件相关配置.html">
+            
+                    
+                    flund-bit日志收集套件相关配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.38" data-path="../k8s监控prometheus套件相关配置.html">
+            
+                <a href="../k8s监控prometheus套件相关配置.html">
+            
+                    
+                    k8s监控prometheus套件相关配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.39" data-path="../prometheus operator监控自定义服务.html">
+            
+                <a href="../prometheus operator监控自定义服务.html">
+            
+                    
+                    prometheus operator监控自定义服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.40" data-path="../kubernetes环境通用测试套件.html">
+            
+                <a href="../kubernetes环境通用测试套件.html">
+            
+                    
+                    kubernetes环境通用测试套件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.41" data-path="../kubernetes环境通用测试.html">
+            
+                <a href="../kubernetes环境通用测试.html">
+            
+                    
+                    kubernetes环境通用测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.42" data-path="../k8s开发测试运维小工具.html">
+            
+                <a href="../k8s开发测试运维小工具.html">
+            
+                    
+                    k8s开发测试运维小工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.43" data-path="../k8s Operator使用.html">
+            
+                <a href="../k8s Operator使用.html">
+            
+                    
+                    k8s Operator使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.44" data-path="../k8s Operator sdk使用.html">
+            
+                <a href="../k8s Operator sdk使用.html">
+            
+                    
+                    k8s Operator sdk使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.45" data-path="../k8s调度组件.html">
+            
+                <a href="../k8s调度组件.html">
+            
+                    
+                    k8s调度组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    kubespray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.46.1" data-path="kubespray模块分析.html">
+            
+                <a href="kubespray模块分析.html">
+            
+                    
+                    kubespray模块分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.2" data-path="kubespray下载组件镜像方法.html">
+            
+                <a href="kubespray下载组件镜像方法.html">
+            
+                    
+                    kubespray下载组件镜像方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.3" data-path="kubespray的download_run_once安装.html">
+            
+                <a href="kubespray的download_run_once安装.html">
+            
+                    
+                    kubespray的download_run_once安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.4" data-path="kubespray模块nginx-ingresscontroller使用.html">
+            
+                <a href="kubespray模块nginx-ingresscontroller使用.html">
+            
+                    
+                    kubespray模块nginx-ingresscontroller使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.5" data-path="kubespray模块IPVS和kube-router使用.html">
+            
+                <a href="kubespray模块IPVS和kube-router使用.html">
+            
+                    
+                    kubespray模块IPVS和kube-router使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.6" data-path="kubespray模块存储localvolume使用.html">
+            
+                <a href="kubespray模块存储localvolume使用.html">
+            
+                    
+                    kubespray模块存储localvolume使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.7" data-path="ansible部署ceph集群.html">
+            
+                <a href="ansible部署ceph集群.html">
+            
+                    
+                    ansible部署ceph集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.8" data-path="ansible部署ceph集群-ubuntu1604.html">
+            
+                <a href="ansible部署ceph集群-ubuntu1604.html">
+            
+                    
+                    ansible部署ceph集群-ubuntu1604
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.9" data-path="ceph集群监控.html">
+            
+                <a href="ceph集群监控.html">
+            
+                    
+                    ceph集群监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.10" data-path="kubespray的cephfs_provisioner使用.html">
+            
+                <a href="kubespray的cephfs_provisioner使用.html">
+            
+                    
+                    kubespray的cephfs_provisioner使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.11" data-path="kubespray的rbd_provisioner使用.html">
+            
+                <a href="kubespray的rbd_provisioner使用.html">
+            
+                    
+                    kubespray的rbd_provisioner使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.12" data-path="kubespray模块kubeadm使用.html">
+            
+                <a href="kubespray模块kubeadm使用.html">
+            
+                    
+                    kubespray模块kubeadm使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.13" data-path="harbor镜像仓库启用chartmuseum.html">
+            
+                <a href="harbor镜像仓库启用chartmuseum.html">
+            
+                    
+                    harbor镜像仓库启用chartmuseum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.14" data-path="kubespray多master节点中一master节点故障的影响.html">
+            
+                <a href="kubespray多master节点中一master节点故障的影响.html">
+            
+                    
+                    kubespray多master节点中一master节点故障的影响
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.15" data-path="kubespray调整coredns实例数方法.html">
+            
+                <a href="kubespray调整coredns实例数方法.html">
+            
+                    
+                    kubespray调整coredns实例数方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.16" data-path="kubespray2.8启用gpu特性.html">
+            
+                <a href="kubespray2.8启用gpu特性.html">
+            
+                    
+                    kubespray2.8启用gpu特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.17" data-path="promtheus-operator监控kubernetes集群.html">
+            
+                <a href="promtheus-operator监控kubernetes集群.html">
+            
+                    
+                    promtheus-operator监控kubernetes集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.46.18" data-path="promtheus查询语言promQL.html">
+            
+                <a href="promtheus查询语言promQL.html">
+            
+                    
+                    promtheus查询语言promQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.19" data-path="k8s集群master与etcd故障备份与恢复.html">
+            
+                <a href="k8s集群master与etcd故障备份与恢复.html">
+            
+                    
+                    k8s集群master与etcd故障备份与恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.20" data-path="kubespray升级集群.html">
+            
+                <a href="kubespray升级集群.html">
+            
+                    
+                    kubespray升级集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.21" data-path="Rong版本升级集群_自动.html">
+            
+                <a href="Rong版本升级集群_自动.html">
+            
+                    
+                    Rong版本升级集群_自动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.22" data-path="Rong版本升级集群_手动.html">
+            
+                <a href="Rong版本升级集群_手动.html">
+            
+                    
+                    Rong版本升级集群_手动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.23" data-path="kubespray2.9.0修改点.html">
+            
+                <a href="kubespray2.9.0修改点.html">
+            
+                    
+                    kubespray2.9.0修改点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.24" data-path="etcd节点迁移.html">
+            
+                <a href="etcd节点迁移.html">
+            
+                    
+                    etcd节点迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.25" data-path="kubespray增加和删除worker节点.html">
+            
+                <a href="kubespray增加和删除worker节点.html">
+            
+                    
+                    kubespray增加和删除worker节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.26" data-path="kubespray添加删除etcd节点master节点.html">
+            
+                <a href="kubespray添加删除etcd节点master节点.html">
+            
+                    
+                    kubespray添加删除etcd节点master节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46.27" data-path="kubespray中kubernete-dashboard配置要点.html">
+            
+                <a href="kubespray中kubernete-dashboard配置要点.html">
+            
+                    
+                    kubespray中kubernete-dashboard配置要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../helm/README.md">
+            
+                <span>
+            
+                    
+                    helm笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../helm/helm使用.html">
+            
+                <a href="../../helm/helm使用.html">
+            
+                    
+                    helm使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../helm/helm chart和chart repo.html">
+            
+                <a href="../../helm/helm chart和chart repo.html">
+            
+                    
+                    helm chart和chart repo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../helm/chart模板文件简单语法使用.html">
+            
+                <a href="../../helm/chart模板文件简单语法使用.html">
+            
+                    
+                    chart模板文件简单语法使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../helm/自定义helm的chart.html">
+            
+                <a href="../../helm/自定义helm的chart.html">
+            
+                    
+                    自定义helm的chart
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../helm/chartmuseum使用.html">
+            
+                <a href="../../helm/chartmuseum使用.html">
+            
+                    
+                    chartmuseum使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../helm/离线部署monocular.html">
+            
+                <a href="../../helm/离线部署monocular.html">
+            
+                    
+                    离线部署monocular
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../serviceMesh/">
+            
+                <a href="../../serviceMesh/">
+            
+                    
+                    serviceMesh服务网格笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../serviceMesh/ntp.html">
+            
+                <a href="../../serviceMesh/ntp.html">
+            
+                    
+                    ntp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../serviceMesh/serviceMesh.html">
+            
+                <a href="../../serviceMesh/serviceMesh.html">
+            
+                    
+                    serviceMesh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../serviceMesh/微服务解决方案调研.html">
+            
+                <a href="../../serviceMesh/微服务解决方案调研.html">
+            
+                    
+                    微服务解决方案调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../serviceMesh/istio安装实践.html">
+            
+                <a href="../../serviceMesh/istio安装实践.html">
+            
+                    
+                    istio安装实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../serviceMesh/istio流量管理.html">
+            
+                <a href="../../serviceMesh/istio流量管理.html">
+            
+                    
+                    istio流量管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../serviceMesh/istio配置请求速率限制.html">
+            
+                <a href="../../serviceMesh/istio配置请求速率限制.html">
+            
+                    
+                    istio配置请求速率限制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../serviceMesh/istio服务安全.html">
+            
+                <a href="../../serviceMesh/istio服务安全.html">
+            
+                    
+                    istio服务安全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../../serviceMesh/istio实战.html">
+            
+                <a href="../../serviceMesh/istio实战.html">
+            
+                    
+                    istio实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../../serviceMesh/istio实战注入策略配置.html">
+            
+                <a href="../../serviceMesh/istio实战注入策略配置.html">
+            
+                    
+                    istio实战注入策略配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../../serviceMesh/istio监控，日志，调用跟踪.html">
+            
+                <a href="../../serviceMesh/istio监控，日志，调用跟踪.html">
+            
+                    
+                    istio监控，日志，调用跟踪
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../../serviceMesh/istio ansible部署.html">
+            
+                <a href="../../serviceMesh/istio ansible部署.html">
+            
+                    
+                    istio ansible部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../../serviceMesh/istio helm部署.html">
+            
+                <a href="../../serviceMesh/istio helm部署.html">
+            
+                    
+                    istio helm部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="../../serviceMesh/kubernetes istio api访问示例.html">
+            
+                <a href="../../serviceMesh/kubernetes istio api访问示例.html">
+            
+                    
+                    kubernetes istio api访问示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="../../serviceMesh/istio配套网络插件cilium.html">
+            
+                <a href="../../serviceMesh/istio配套网络插件cilium.html">
+            
+                    
+                    istio配套网络插件cilium
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="../../serviceMesh/istio1.0流量管理.html">
+            
+                <a href="../../serviceMesh/istio1.0流量管理.html">
+            
+                    
+                    istio1.0流量管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="../../serviceMesh/istio1.0 helm部署.html">
+            
+                <a href="../../serviceMesh/istio1.0 helm部署.html">
+            
+                    
+                    istio1.0 helm部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../serverless/">
+            
+                <a href="../../serverless/">
+            
+                    
+                    serverless笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../serverless/serverless.html">
+            
+                <a href="../../serverless/serverless.html">
+            
+                    
+                    serverless
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../serverless/kubeless使用.html">
+            
+                <a href="../../serverless/kubeless使用.html">
+            
+                    
+                    kubeless使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../serverless/fission使用.html">
+            
+                <a href="../../serverless/fission使用.html">
+            
+                    
+                    fission使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../openshift/">
+            
+                <a href="../../openshift/">
+            
+                    
+                    openshift笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../openshift/openshift使用.html">
+            
+                <a href="../../openshift/openshift使用.html">
+            
+                    
+                    openshift使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../openshift/openshift-buildconfig.html">
+            
+                <a href="../../openshift/openshift-buildconfig.html">
+            
+                    
+                    openshift-buildconfig
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../openshift/minishift使用.html">
+            
+                <a href="../../openshift/minishift使用.html">
+            
+                    
+                    minishift使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../openshift/minishift使用插件istio.html">
+            
+                <a href="../../openshift/minishift使用插件istio.html">
+            
+                    
+                    minishift使用插件istio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../openshift/keycloak与istio结合demo.html">
+            
+                <a href="../../openshift/keycloak与istio结合demo.html">
+            
+                    
+                    keycloak与istio结合demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../devops/">
+            
+                <a href="../../devops/">
+            
+                    
+                    devops笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../devops/devops工具.html">
+            
+                <a href="../../devops/devops工具.html">
+            
+                    
+                    devops工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../devops/devops工具简介与对比.html">
+            
+                <a href="../../devops/devops工具简介与对比.html">
+            
+                    
+                    devops工具简介与对比
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../devops/maven/">
+            
+                <a href="../../devops/maven/">
+            
+                    
+                    maven
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../../devops/maven/maven插件配置.html">
+            
+                <a href="../../devops/maven/maven插件配置.html">
+            
+                    
+                    maven插件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.2" data-path="../../devops/maven/mave使用私有仓库nexus.html">
+            
+                <a href="../../devops/maven/mave使用私有仓库nexus.html">
+            
+                    
+                    mave使用私有仓库nexus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.3" data-path="../../devops/maven/上传jar到nexus.html">
+            
+                <a href="../../devops/maven/上传jar到nexus.html">
+            
+                    
+                    上传jar到nexus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.4" data-path="../../devops/maven/Artifactory搭建Maven私服.html">
+            
+                <a href="../../devops/maven/Artifactory搭建Maven私服.html">
+            
+                    
+                    Artifactory搭建Maven私服
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../../devops/Jenkins-vs-gitlabci.html">
+            
+                <a href="../../devops/Jenkins-vs-gitlabci.html">
+            
+                    
+                    Jenkins-vs-gitlabci
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../../devops/gitlab ci 使用.html">
+            
+                <a href="../../devops/gitlab ci 使用.html">
+            
+                    
+                    gitlab ci 使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../../devops/gitlab-k8s.html">
+            
+                <a href="../../devops/gitlab-k8s.html">
+            
+                    
+                    gitlab-k8s
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../../devops/gitlab-runner issue.html">
+            
+                <a href="../../devops/gitlab-runner issue.html">
+            
+                    
+                    gitlab-runner issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../../devops/gitlab启用自带的docker-registry.html">
+            
+                <a href="../../devops/gitlab启用自带的docker-registry.html">
+            
+                    
+                    gitlab启用自带的docker-registry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../../devops/gitlab添加已存在的kubernetes.html">
+            
+                <a href="../../devops/gitlab添加已存在的kubernetes.html">
+            
+                    
+                    gitlab添加已存在的kubernetes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../../devops/gitlab制作离线kubernetes插件安装.html">
+            
+                <a href="../../devops/gitlab制作离线kubernetes插件安装.html">
+            
+                    
+                    gitlab制作离线kubernetes插件安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../../devops/jenkins.html">
+            
+                <a href="../../devops/jenkins.html">
+            
+                    
+                    jenkins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="../../devops/jenkins-pipeline.html">
+            
+                <a href="../../devops/jenkins-pipeline.html">
+            
+                    
+                    jenkins-pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="../../devops/jenkins集成kubernetes环境cicd.html">
+            
+                <a href="../../devops/jenkins集成kubernetes环境cicd.html">
+            
+                    
+                    jenkins集成kubernetes环境cicd
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >promtheus查询语言promQL</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>1&#x3001;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6307;&#x6807;&#x503C;&#x67E5;&#x627E;&#x6570;&#x636E;</p>
+<p>&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57;<code>node_load1</code>&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x51FA;Prometheus&#x91C7;&#x96C6;&#x5230;&#x7684;&#x4E3B;&#x673A;&#x8D1F;&#x8F7D;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x3002;</p>
+<p>2&#x3001;prometheus&#x76D1;&#x63A7;&#x6307;&#x6807;&#x7684;&#x7C7B;&#x578B;</p>
+<p>&#x5728;<code>Prometheus</code>&#x7684;&#x5B58;&#x50A8;&#x5B9E;&#x73B0;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x76D1;&#x63A7;&#x6837;&#x672C;&#x90FD;&#x662F;&#x4EE5;<code>time-series</code>&#x7684;&#x5F62;&#x5F0F;&#x4FDD;&#x5B58;&#x5728;<code>Prometheus</code>&#x5185;&#x5B58;&#x7684;<code>TSDB</code>&#xFF08;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#x5E93;&#xFF09;&#x4E2D;&#xFF0C;&#x6709;&#x4E9B;&#x6307;&#x6807;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x53D8;&#x5316;&#x8FD9;&#x4E2A;&#x6307;&#x6807;&#x8FD4;&#x56DE;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x662F;&#x5728;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;&#xFF0C;&#x6709;&#x4E9B;&#x6307;&#x6807;&#x662F;&#x4E00;&#x4E2A;&#x6301;&#x7EED;&#x589E;&#x5927;&#x7684;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x53CD;&#x5E94;&#x7684;&#x662F;&#x7D2F;&#x79EF;&#x4F7F;&#x7528;&#x65F6;&#x95F4;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x5E2E;&#x52A9;&#x7528;&#x6237;&#x7406;&#x89E3;&#x548C;&#x533A;&#x5206;&#x8FD9;&#x4E9B;&#x4E0D;&#x540C;&#x76D1;&#x63A7;&#x6307;&#x6807;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;<code>Prometheus</code>&#x5B9A;&#x4E49;&#x4E86;4&#x4E2D;&#x4E0D;&#x540C;&#x7684;&#x6307;&#x6807;&#x7C7B;&#x578B;<code>(metric type)</code>&#xFF1A;<code>Counter&#xFF08;&#x8BA1;&#x6570;&#x5668;&#xFF09;&#x3001;Gauge&#xFF08;&#x4EEA;&#x8868;&#x76D8;&#xFF09;&#x3001;Histogram&#xFF08;&#x76F4;&#x65B9;&#x56FE;&#xFF09;&#x3001;Summary&#xFF08;&#x6458;&#x8981;&#xFF09;</code>&#x3002;
+&#x5728;<code>Exporter</code>&#x8FD4;&#x56DE;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x4E2D;&#xFF0C;&#x5176;&#x6CE8;&#x91CA;&#x4E2D;&#x4E5F;&#x5305;&#x542B;&#x4E86;&#x8BE5;&#x6837;&#x672C;&#x7684;&#x7C7B;&#x578B;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code># HELP node_cpu Seconds the cpus spent in each mode.
+# TYPE node_cpu counter
+node_cpu{cpu=&quot;cpu0&quot;,mode=&quot;idle&quot;} 362812.7890625
+</code></pre><p>1&#xFF09;&#x3001;<code>Counter&#xFF1A;</code>&#x53EA;&#x589E;&#x4E0D;&#x51CF;&#x7684;&#x8BA1;&#x6570;&#x5668;
+&#x4E00;&#x822C;&#x662F;&#x7D2F;&#x8BA1;&#x7684;&#x8BA1;&#x6570;&#x503C;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x6307;&#x6807;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>rate()</code>&#x51FD;&#x6570;&#x83B7;&#x53D6;HTTP&#x8BF7;&#x6C42;&#x91CF;&#x7684;&#x589E;&#x957F;&#x7387;&#xFF1A;</p>
+<pre><code>rate(http_requests_total[5m])
+</code></pre><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>topk</code>&#x51FD;&#x6570;&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x8BBF;&#x95EE;&#x91CF;&#x524D;10&#x7684;<code>HTTP</code>&#x5730;&#x5740;&#xFF1A;</p>
+<pre><code>topk(10, http_requests_total)
+</code></pre><p>2&#xFF09;<code>Gauge&#xFF1A;</code>&#x53EF;&#x589E;&#x53EF;&#x51CF;&#x7684;&#x4EEA;&#x8868;&#x76D8;
+&#x8BE5;&#x7C7B;&#x578B;&#x6307;&#x6807;&#x4FA7;&#x91CD;&#x53CD;&#x6620;&#x7CFB;&#x7EDF;&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#xFF0C;&#x6307;&#x6807;&#x8BA1;&#x6570;&#x503C;&#x53EF;&#x589E;&#x53EF;&#x51CF;&#x3002;
+&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>delta</code>&#x51FD;&#x6570;&#x83B7;&#x53D6;&#x6837;&#x672C;&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x8FD4;&#x56DE;&#x5185;&#x7684;&#x53D8;&#x5316;&#x60C5;&#x51B5;&#x3002;
+&#x4F8B;&#x5982;&#xFF0C;&#x8BA1;&#x7B97;CPU&#x6E29;&#x5EA6;&#x5728;&#x4E24;&#x4E2A;&#x5C0F;&#x65F6;&#x5185;&#x7684;&#x5DEE;&#x5F02;&#xFF1A;</p>
+<pre><code>delta(cpu_temp_celsius{host=&quot;zeus&quot;}[2h])
+</code></pre><p>&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>deriv()</code>&#x8BA1;&#x7B97;&#x6837;&#x672C;&#x7684;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#x6A21;&#x578B;&#xFF0C;&#x751A;&#x81F3;&#x662F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>predict_linear()</code>&#x5BF9;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#x8D8B;&#x52BF;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x9884;&#x6D4B;&#x7CFB;&#x7EDF;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x5728;4&#x4E2A;&#x5C0F;&#x65F6;&#x4E4B;&#x540E;&#x7684;&#x5269;&#x4F59;&#x60C5;&#x51B5;&#xFF1A;</p>
+<pre><code>predict_linear(node_filesystem_free{job=&quot;node&quot;}[1h], 4 * 3600)
+</code></pre><p>3&#xFF09;&#x4F7F;&#x7528;Histogram&#x548C;Summary&#x5206;&#x6790;&#x6570;&#x636E;&#x5206;&#x5E03;&#x60C5;&#x51B5;
+Prometheus&#x5B9A;&#x4E49;Histogram&#x548C;Summary&#x7684;&#x6307;&#x6807;&#x7C7B;&#x578B;&#x3002;Histogram&#x548C;Summary&#x4E3B;&#x7528;&#x7528;&#x4E8E;&#x7EDF;&#x8BA1;&#x548C;&#x5206;&#x6790;&#x6837;&#x672C;&#x7684;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x3002;
+&#x901A;&#x8FC7;Histogram&#x548C;Summary&#x7C7B;&#x578B;&#x7684;&#x76D1;&#x63A7;&#x6307;&#x6807;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x4E86;&#x89E3;&#x76D1;&#x63A7;&#x6837;&#x672C;&#x7684;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x3002;
+&#x4F8B;&#x5982;&#xFF0C;&#x6307;&#x6807;<code>prometheus_tsdb_wal_fsync_duration_seconds</code>&#x7684;&#x6307;&#x6807;&#x7C7B;&#x578B;&#x4E3A;<code>Summary</code>&#x3002; &#x5B83;&#x8BB0;&#x5F55;&#x4E86;<code>Prometheus Server&#x4E2D;wal_fsync</code>&#x5904;&#x7406;&#x7684;&#x5904;&#x7406;&#x65F6;&#x95F4;&#xFF0C;&#x901A;&#x8FC7;&#x8BBF;&#x95EE;<code>Prometheus Server</code>&#x7684;<code>/metrics</code>&#x5730;&#x5740;&#xFF0C;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5230;&#x4EE5;&#x4E0B;&#x76D1;&#x63A7;&#x6837;&#x672C;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code># HELP prometheus_tsdb_wal_fsync_duration_seconds Duration of WAL fsync.
+# TYPE prometheus_tsdb_wal_fsync_duration_seconds summary
+prometheus_tsdb_wal_fsync_duration_seconds{quantile=&quot;0.5&quot;} 0.012352463
+prometheus_tsdb_wal_fsync_duration_seconds{quantile=&quot;0.9&quot;} 0.014458005
+prometheus_tsdb_wal_fsync_duration_seconds{quantile=&quot;0.99&quot;} 0.017316173
+prometheus_tsdb_wal_fsync_duration_seconds_sum 2.888716127000002
+prometheus_tsdb_wal_fsync_duration_seconds_count 216
+</code></pre><p>&#x4ECE;&#x4E0A;&#x9762;&#x7684;&#x6837;&#x672C;&#x4E2D;&#x53EF;&#x4EE5;&#x5F97;&#x77E5;&#x5F53;&#x524D;<code>Prometheus Server</code>&#x8FDB;&#x884C;<code>wal_fsync</code>&#x64CD;&#x4F5C;&#x7684;&#x603B;&#x6B21;&#x6570;&#x4E3A;216&#x6B21;&#xFF0C;&#x8017;&#x65F6;2.888716127000002s&#x3002;&#x5176;&#x4E2D;&#x4E2D;&#x4F4D;&#x6570;<code>&#xFF08;quantile=0.5&#xFF09;</code>&#x7684;&#x8017;&#x65F6;&#x4E3A;0.012352463&#xFF0C;9&#x5206;&#x4F4D;&#x6570;&#xFF08;quantile=0.9&#xFF09;&#x7684;&#x8017;&#x65F6;&#x4E3A;0.014458005s&#x3002;
+&#x5728;<code>Prometheus Server</code>&#x81EA;&#x8EAB;&#x8FD4;&#x56DE;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x80FD;&#x627E;&#x5230;&#x7C7B;&#x578B;&#x4E3A;<code>Histogram</code>&#x7684;&#x76D1;&#x63A7;&#x6307;&#x6807;<code>prometheus_tsdb_compaction_chunk_range_bucket&#x3002;</code></p>
+<pre><code># HELP prometheus_tsdb_compaction_chunk_range Final time range of chunks on their first compaction
+# TYPE prometheus_tsdb_compaction_chunk_range histogram
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;100&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;400&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;1600&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;6400&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;25600&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;102400&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;409600&quot;} 0
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;1.6384e+06&quot;} 260
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;6.5536e+06&quot;} 780
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;2.62144e+07&quot;} 780
+prometheus_tsdb_compaction_chunk_range_bucket{le=&quot;+Inf&quot;} 780
+prometheus_tsdb_compaction_chunk_range_sum 1.1540798e+09
+prometheus_tsdb_compaction_chunk_range_count 780
+</code></pre><p>&#x4E0E;<code>Summary</code>&#x7C7B;&#x578B;&#x7684;&#x6307;&#x6807;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;&#x5728;&#x4E8E;<code>Histogram</code>&#x7C7B;&#x578B;&#x7684;&#x6837;&#x672C;&#x540C;&#x6837;&#x4F1A;&#x53CD;&#x5E94;&#x5F53;&#x524D;&#x6307;&#x6807;&#x7684;&#x8BB0;&#x5F55;&#x7684;&#x603B;&#x6570;(&#x4EE5;<code>_count</code>&#x4F5C;&#x4E3A;&#x540E;&#x7F00;)&#x4EE5;&#x53CA;&#x5176;&#x503C;&#x7684;&#x603B;&#x91CF;&#xFF08;&#x4EE5;<code>_sum</code>&#x4F5C;&#x4E3A;&#x540E;&#x7F00;&#xFF09;&#x3002;&#x4E0D;&#x540C;&#x5728;&#x4E8E;<code>Histogram</code>&#x6307;&#x6807;&#x76F4;&#x63A5;&#x53CD;&#x5E94;&#x4E86;&#x5728;&#x4E0D;&#x540C;&#x533A;&#x95F4;&#x5185;&#x6837;&#x672C;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x533A;&#x95F4;&#x901A;&#x8FC7;&#x6807;&#x7B7E;<code>len</code>&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#x3002;
+&#x540C;&#x65F6;&#x5BF9;&#x4E8E;<code>Histogram</code>&#x7684;&#x6307;&#x6807;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>histogram_quantile()</code>&#x51FD;&#x6570;&#x8BA1;&#x7B97;&#x51FA;&#x5176;&#x503C;&#x7684;&#x5206;&#x4F4D;&#x6570;&#x3002;&#x4E0D;&#x540C;&#x5728;&#x4E8E;<code>Histogram</code>&#x901A;&#x8FC7;<code>histogram_quantile</code>&#x51FD;&#x6570;&#x662F;&#x5728;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x8BA1;&#x7B97;&#x7684;&#x5206;&#x4F4D;&#x6570;&#x3002; &#x800C;<code>Sumamry</code>&#x7684;&#x5206;&#x4F4D;&#x6570;&#x5219;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&#x3002;&#x56E0;&#x6B64;&#x5BF9;&#x4E8E;&#x5206;&#x4F4D;&#x6570;&#x7684;&#x8BA1;&#x7B97;&#x800C;&#x8A00;&#xFF0C;<code>Summary</code>&#x5728;&#x901A;&#x8FC7;<code>PromQL</code>&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#x6709;&#x66F4;&#x597D;&#x7684;&#x6027;&#x80FD;&#x8868;&#x73B0;&#xFF0C;&#x800C;<code>Histogram</code>&#x5219;&#x4F1A;&#x6D88;&#x8017;&#x66F4;&#x591A;&#x7684;&#x8D44;&#x6E90;&#x3002;&#x53CD;&#x4E4B;&#x5BF9;&#x4E8E;&#x5BA2;&#x6237;&#x7AEF;&#x800C;&#x8A00;<code>Histogram</code>&#x6D88;&#x8017;&#x7684;&#x8D44;&#x6E90;&#x66F4;&#x5C11;&#x3002;&#x5728;&#x9009;&#x62E9;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x65F6;&#x7528;&#x6237;&#x5E94;&#x8BE5;&#x6309;&#x7167;&#x81EA;&#x5DF1;&#x7684;&#x5B9E;&#x9645;&#x573A;&#x666F;&#x8FDB;&#x884C;&#x9009;&#x62E9;&#x3002;</p>
+<h3 id="promql">PromQL</h3>
+<p>1&#x3001;&#x5B8C;&#x5168;&#x5339;&#x914D;
+PromQL&#x652F;&#x6301;&#x4F7F;&#x7528;<code>=&#x548C;!=</code>&#x4E24;&#x79CD;&#x5B8C;&#x5168;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#xFF1A;
+&#x901A;&#x8FC7;&#x4F7F;&#x7528;<code>label=value</code>&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x90A3;&#x4E9B;&#x6807;&#x7B7E;&#x6EE1;&#x8DB3;&#x8868;&#x8FBE;&#x5F0F;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#xFF1B;
+&#x53CD;&#x4E4B;&#x4F7F;&#x7528;<code>label!=value</code>&#x5219;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x6807;&#x7B7E;&#x5339;&#x914D;&#x6392;&#x9664;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#xFF1B;</p>
+<p>2&#x3001;&#x6B63;&#x5219;&#x5339;&#x914D;
+&#x9664;&#x4E86;&#x4F7F;&#x7528;&#x5B8C;&#x5168;&#x5339;&#x914D;&#x7684;&#x65B9;&#x5F0F;&#x5BF9;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x8FDB;&#x884C;&#x8FC7;&#x6EE4;&#x4EE5;&#x5916;&#xFF0C;PromQL&#x8FD8;&#x53EF;&#x4EE5;&#x652F;&#x6301;&#x4F7F;&#x7528;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x4F5C;&#x4E3A;&#x5339;&#x914D;&#x6761;&#x4EF6;&#xFF0C;&#x591A;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x4E4B;&#x95F4;&#x4F7F;&#x7528;|&#x8FDB;&#x884C;&#x5206;&#x79BB;&#xFF1A;
+&#x4F7F;&#x7528;<code>label=~regx</code>&#x8868;&#x793A;&#x9009;&#x62E9;&#x90A3;&#x4E9B;&#x6807;&#x7B7E;&#x7B26;&#x5408;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5B9A;&#x4E49;&#x7684;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#xFF1B;
+&#x53CD;&#x4E4B;&#x4F7F;&#x7528;<code>label!~regx</code>&#x8FDB;&#x884C;&#x6392;&#x9664;&#xFF1B;
+&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x67E5;&#x8BE2;&#x591A;&#x4E2A;&#x73AF;&#x8282;&#x4E0B;&#x7684;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x5E8F;&#x5217;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;</p>
+<pre><code>http_requests_total{environment=~&quot;staging|testing|development&quot;,method!=&quot;GET&quot;}
+</code></pre><p>3&#x3001;&#x8303;&#x56F4;&#x67E5;&#x8BE2;
+&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8FC7;&#x53BB;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x533A;&#x95F4;&#x5411;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x533A;&#x95F4;&#x5411;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x77AC;&#x65F6;&#x5411;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x5728;&#x4E8E;&#x5728;&#x533A;&#x95F4;&#x5411;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x65F6;&#x95F4;&#x9009;&#x62E9;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x901A;&#x8FC7;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x9009;&#x62E9;&#x5668;<code>[]</code>&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6700;&#x8FD1;5&#x5206;&#x949F;&#x5185;&#x7684;&#x6240;&#x6709;&#x6837;&#x672C;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code>http_request_total{}[5m]
+</code></pre><p>&#x8BE5;&#x8868;&#x8FBE;&#x5F0F;&#x5C06;&#x4F1A;&#x8FD4;&#x56DE;&#x67E5;&#x8BE2;&#x5230;&#x7684;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x4E2D;&#x6700;&#x8FD1;5&#x5206;&#x949F;&#x7684;&#x6240;&#x6709;&#x6837;&#x672C;&#x6570;&#x636E;&#x3002;
+&#x9664;&#x4E86;&#x4F7F;&#x7528;m&#x8868;&#x793A;&#x5206;&#x949F;&#x4EE5;&#x5916;&#xFF0C;PromQL&#x7684;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x9009;&#x62E9;&#x5668;&#x652F;&#x6301;&#x5176;&#x5B83;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#xFF1A;</p>
+<pre><code>s - &#x79D2;
+m - &#x5206;&#x949F;
+h - &#x5C0F;&#x65F6;
+d - &#x5929;
+w - &#x5468;
+y - &#x5E74;
+</code></pre><p>4&#x3001;PromQL&#x805A;&#x5408;&#x64CD;&#x4F5C;
+Prometheus&#x63D0;&#x4F9B;&#x4E86;&#x4E0B;&#x5217;&#x5185;&#x7F6E;&#x7684;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x7B26;</p>
+<pre><code>sum (&#x6C42;&#x548C;)
+min (&#x6700;&#x5C0F;&#x503C;)
+max (&#x6700;&#x5927;&#x503C;)
+avg (&#x5E73;&#x5747;&#x503C;)
+stddev (&#x6807;&#x51C6;&#x5DEE;)
+stdvar (&#x6807;&#x51C6;&#x5DEE;&#x5F02;)
+count (&#x8BA1;&#x6570;)
+count_values (&#x5BF9;value&#x8FDB;&#x884C;&#x8BA1;&#x6570;)
+bottomk (&#x540E;n&#x6761;&#x65F6;&#x5E8F;)
+topk (&#x524D;n&#x6761;&#x65F6;&#x5E8F;)
+quantile (&#x5206;&#x5E03;&#x7EDF;&#x8BA1;)
+</code></pre><p>5&#x3001;prometheus&#x5185;&#x7F6E;&#x51FD;&#x6570;
+1&#xFF09;&#x8BA1;&#x7B97;<code>Counter</code>&#x6307;&#x6807;&#x7684;&#x589E;&#x957F;&#x7387;
+&#x83B7;&#x5F97;&#x6307;&#x6807;&#x5728;2&#x5206;&#x949F;&#x5185;&#x7684;&#x5E73;&#x5747;&#x589E;&#x957F;&#x7387;</p>
+<pre><code>increase(node_cpu[2m]) / 120
+</code></pre><p>&#x6216;&#x8005;</p>
+<pre><code>rate(node_cpu[2m])
+</code></pre><p>&#x6216;&#x8005;</p>
+<pre><code>irate(node_cpu[2m])
+</code></pre><p>&#x51FD;&#x6570;<code>irate</code>&#x76F8;&#x6BD4;&#x4E8E;<code>rate</code>&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x9AD8;&#x7684;&#x7075;&#x654F;&#x5EA6;&#xFF0C;&#x4E0D;&#x8FC7;&#x5F53;&#x9700;&#x8981;&#x5206;&#x6790;&#x957F;&#x671F;&#x8D8B;&#x52BF;&#x6216;&#x8005;&#x5728;&#x544A;&#x8B66;&#x89C4;&#x5219;&#x4E2D;&#xFF0C;<code>irate</code>&#x7684;&#x8FD9;&#x79CD;&#x7075;&#x654F;&#x5EA6;&#x53CD;&#x800C;&#x5BB9;&#x6613;&#x9020;&#x6210;&#x5E72;&#x6270;&#x3002;&#x56E0;&#x6B64;&#x5728;&#x957F;&#x671F;&#x8D8B;&#x52BF;&#x5206;&#x6790;&#x6216;&#x8005;&#x544A;&#x8B66;&#x4E2D;&#x66F4;&#x63A8;&#x8350;&#x4F7F;&#x7528;<code>rate</code>&#x51FD;&#x6570;&#x3002;
+2&#xFF09;&#x9884;&#x6D4B;<code>Gauge</code>&#x6307;&#x6807;&#x53D8;&#x5316;&#x8D8B;&#x52BF;
+&#x51FD;&#x6570;<code>predict_linear</code>&#x53EF;&#x4EE5;&#x9884;&#x6D4B;&#x65F6;&#x95F4;&#x5E8F;&#x5217;<code>v</code>&#x5728;<code>t</code>&#x79D2;&#x540E;&#x7684;&#x503C;&#x3002;&#x5B83;&#x57FA;&#x4E8E;&#x7B80;&#x5355;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5BF9;&#x65F6;&#x95F4;&#x7A97;&#x53E3;&#x5185;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;&#xFF0C;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x5BF9;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x7684;&#x53D8;&#x5316;&#x8D8B;&#x52BF;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x57FA;&#x4E8E;2&#x5C0F;&#x65F6;&#x7684;&#x6837;&#x672C;&#x6570;&#x636E;&#xFF0C;&#x6765;&#x9884;&#x6D4B;&#x4E3B;&#x673A;&#x53EF;&#x7528;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x7684;&#x662F;&#x5426;&#x5728;4&#x4E2A;&#x5C0F;&#x65F6;&#x5019;&#x88AB;&#x5360;&#x6EE1;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;</p>
+<pre><code>predict_linear(node_filesystem_free{job=&quot;node&quot;}[2h], 4 * 3600) &lt; 0
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="promtheus-operator监控kubernetes集群.html" class="navigation navigation-prev " aria-label="Previous page: promtheus-operator监控kubernetes集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="k8s集群master与etcd故障备份与恢复.html" class="navigation navigation-next " aria-label="Next page: k8s集群master与etcd故障备份与恢复">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"promtheus查询语言promQL","level":"1.3.46.18","depth":3,"next":{"title":"k8s集群master与etcd故障备份与恢复","level":"1.3.46.19","depth":3,"path":"k8s/kubespray/k8s集群master与etcd故障备份与恢复.md","ref":"k8s/kubespray/k8s集群master与etcd故障备份与恢复.md","articles":[]},"previous":{"title":"promtheus-operator监控kubernetes集群","level":"1.3.46.17","depth":3,"path":"k8s/kubespray/promtheus-operator监控kubernetes集群.md","ref":"k8s/kubespray/promtheus-operator监控kubernetes集群.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"k8s/kubespray/promtheus查询语言promQL.md","mtime":"2019-02-18T03:55:21.193Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-26T07:17:38.712Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
