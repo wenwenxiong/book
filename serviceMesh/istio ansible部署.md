@@ -1,6 +1,6 @@
-###修改点
-1、kubernetes版本为1.10.0 ，ansible中的脚本正则表达式有问题
-原来的脚本中为main.yaml的22行左右的v([[:digit:]]\.[[:digit:]]\.[[:digit:]])修改为v([[:digit:]]\.[[:digit:]]{1,}\.[[:digit:]])
+### 修改点
+1、`kubernetes`版本为`1.10.0 `，`ansible`中的脚本正则表达式有问题
+原来的脚本中为`main.yaml`的`22`行左右的`v([[:digit:]]\.[[:digit:]]\.[[:digit:]])`修改为`v([[:digit:]]\.[[:digit:]]{1,}\.[[:digit:]])`
 ```
 - name: Extract server version
   shell: |
@@ -70,8 +70,9 @@ install_sidecar.yml在main.yaml的位置为
 - include_tasks: install_samples.yml
   when: (istio.samples is iterable) and (istio.samples | length > 0)
 ```
-###整合到kismatic中
+### 整合到kismatic中
 kismatic中的命令行安装有以下命令可以执行单个在ansible/playbooks目录下的yaml文件
+
 ```
 ./kismatic install step _istio.yaml
 ```
