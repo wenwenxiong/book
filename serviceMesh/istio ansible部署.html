@@ -1116,7 +1116,7 @@
                 <a href="../k8s/kubespray/Rong版本升级集群_自动.html">
             
                     
-                    Rong版本升级集群_自动
+                    Rong版本升级集群自动
             
                 </a>
             
@@ -1129,7 +1129,7 @@
                 <a href="../k8s/kubespray/Rong版本升级集群_手动.html">
             
                     
-                    Rong版本升级集群_手动
+                    Rong版本升级集群手动
             
                 </a>
             
@@ -1970,8 +1970,8 @@
                                 <section class="normal markdown-section">
                                 
                                 <h3 id="&#x4FEE;&#x6539;&#x70B9;">&#x4FEE;&#x6539;&#x70B9;</h3>
-<p>1&#x3001;kubernetes&#x7248;&#x672C;&#x4E3A;1.10.0 &#xFF0C;ansible&#x4E2D;&#x7684;&#x811A;&#x672C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6709;&#x95EE;&#x9898;
-&#x539F;&#x6765;&#x7684;&#x811A;&#x672C;&#x4E2D;&#x4E3A;main.yaml&#x7684;22&#x884C;&#x5DE6;&#x53F3;&#x7684;v([[:digit:]].[[:digit:]].[[:digit:]])&#x4FEE;&#x6539;&#x4E3A;v([[:digit:]].[[:digit:]]{1,}.[[:digit:]])</p>
+<p>1&#x3001;<code>kubernetes</code>&#x7248;&#x672C;&#x4E3A;<code>1.10.0</code>&#xFF0C;<code>ansible</code>&#x4E2D;&#x7684;&#x811A;&#x672C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x6709;&#x95EE;&#x9898;
+&#x539F;&#x6765;&#x7684;&#x811A;&#x672C;&#x4E2D;&#x4E3A;<code>main.yaml</code>&#x7684;<code>22</code>&#x884C;&#x5DE6;&#x53F3;&#x7684;<code>v([[:digit:]]\.[[:digit:]]\.[[:digit:]])</code>&#x4FEE;&#x6539;&#x4E3A;<code>v([[:digit:]]\.[[:digit:]]{1,}\.[[:digit:]])</code></p>
 <pre><code>- name: Extract server version
   shell: |
     {{ cmd_path }} version | sed -En &quot;{{&apos;s/kubernetes.*v([[:digit:]]\.[[:digit:]]\.[[:digit:]]).*/\1/p&apos; if cluster_flavour == &apos;ocp&apos; else &apos;s/Server Version.*GitVersion.*v([[:digit:]]\.[[:digit:]]\.[[:digit:]]).*/\1/p&apos;}}&quot; | tail -1
@@ -2089,7 +2089,7 @@ install_sidecar.yml&#x5728;main.yaml&#x7684;&#x4F4D;&#x7F6E;&#x4E3A;</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"istio ansible部署","level":"1.5.11","depth":2,"next":{"title":"istio helm部署","level":"1.5.12","depth":2,"path":"serviceMesh/istio helm部署.md","ref":"serviceMesh/istio helm部署.md","articles":[]},"previous":{"title":"istio监控，日志，调用跟踪","level":"1.5.10","depth":2,"path":"serviceMesh/istio监控，日志，调用跟踪.md","ref":"serviceMesh/istio监控，日志，调用跟踪.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"serviceMesh/istio ansible部署.md","mtime":"2018-05-04T04:34:09.158Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-26T07:17:38.712Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"istio ansible部署","level":"1.5.11","depth":2,"next":{"title":"istio helm部署","level":"1.5.12","depth":2,"path":"serviceMesh/istio helm部署.md","ref":"serviceMesh/istio helm部署.md","articles":[]},"previous":{"title":"istio监控，日志，调用跟踪","level":"1.5.10","depth":2,"path":"serviceMesh/istio监控，日志，调用跟踪.md","ref":"serviceMesh/istio监控，日志，调用跟踪.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"serviceMesh/istio ansible部署.md","mtime":"2020-11-18T03:20:15.240Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-16T00:29:12.122Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
