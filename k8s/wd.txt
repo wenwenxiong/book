@@ -1,0 +1,22 @@
+apt-get install -y python-pip python3-pip                                                                                
+pip install --no-index --find-links=`pwd` -r requirements.txt 
+pip3 install --no-index --find-links=`pwd` ruamel.yaml
+
+`pwd`
+129: /root/pip
+
+cd contrib/dind
+ansible-playbook -i hosts dind-cluster.yaml
+cd ../../
+    INVENTORY_DIR=inventory/local-dind
+    mkdir -p ${INVENTORY_DIR}
+    rm -f ${INVENTORY_DIR}/hosts.yml
+su root
+ssh-keygen
+    sudo ls /root/.ssh/
+    sudo cat /root/.ssh/id_rsa.pub
+    sudo CONFIG_FILE=${INVENTORY_DIR}/hosts.yml /tmp/kubespray.dind.inventory_builder.sh
+ansible-playbook --become -e ansible_ssh_user=ubuntu -i inventory/local-dind/hosts.yml cluster.yml --extra-vars @contrib/dind/kubespray-dind.yaml
+    sudo docker exec kube-node1 docker images
+    sudo docker exec kube-node1 kubectl get nodes
+
