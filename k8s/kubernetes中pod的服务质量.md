@@ -4,26 +4,31 @@ kubernetes包含三种QoS类型
 * Burstable
 * BestEffort
 
-Guaranteed: 配置成Guaranteed的QoS类型pod需要满足1）Pod中的每个Container需要配置memory request与memory limit相同，2）Pod中的每个Container需要配置cpu request与cpu limit相同。
+```Guaranteed: ```配置成```Guaranteed```的```QoS```类型```pod```需要满足
+1）```Pod```中的每个```Container```需要配置```memory request```与```memory limit```相同；
+2）```Pod```中的每个```Container```需要配置```cpu request```与```cpu limit```相同。
 
-Burstable: 配置成Burstable的QoS类型pod需要满足1）Pod中的资源配置不满足Guaranteed的QoS类型，2）Pod中的至少一个Container配置了cpu request或者memory request。
+```Burstable: ```配置成```Burstable```的```QoS```类型```pod```需要满足
+1）```Pod```中的资源配置不满足```Guaranteed```的```QoS```类型；
+2）```Pod```中的至少一个```Container```配置了```cpu request```或者```memory request```。
 
-BestEffort: 配置成BestEffort的QoS类型pod需要满足1) Pod中的Container必须不配置memory or cpu limits or requests。
+```BestEffort: ```配置成```BestEffort```的```QoS```类型```pod```需要满足
+1) ```Pod```中的```Container```必须不配置```memory or cpu limits or requests```。
 
 ###实践参考
-在提高资源利用率、降低成本的同时，需要在服务的QoS与优化资源利用率之间有个平衡。我们的原则是在保证服务质量的同时，尽量提高资源的利用率。
+在提高资源利用率、降低成本的同时，需要在服务的```QoS```与优化资源利用率之间有个平衡。我们的原则是在保证服务质量的同时，尽量提高资源的利用率。
 
-根据Kubernetes的资源模型，在Pod level的QoS分为三个等级：Guarantee、Burstable、BestEffort，我们也是依照这三个级别对应我们应用的优先级来制定资源超卖的标准。
+根据```Kubernetes```的资源模型，在```Pod level```的```QoS```分为三个等级：```Guarantee、Burstable、BestEffort，```我们也是依照这三个级别对应我们应用的优先级来制定资源超卖的标准。
 
-我们对应用设置的QoS标准：
+我们对应用设置的```QoS```标准：
 
-Kubernetes自带的组件使用Guarantee。
-重要的组件和应用，比如ZooKeeper、Redis，用户服务等使用Guarantee。
-普通的应用（Burstable）按照重要性分级，按重要程度CPU分为2，5，10三个超卖标准，10倍超卖适合boss后台类的应用，大多数适合访问量不高。内存使用固定的1.5倍超卖标准。
+例如```Kubernetes```自带的组件使用```Guarantee```。
+重要的组件和应用，比如```ZooKeeper、Redis，```用户服务等使用```Guarantee```。
+普通的应用```（Burstable）```按照重要性分级，按重要程度CPU分为2，5，10三个超卖标准，10倍超卖适合boss后台类的应用，大多数适合访问量不高。内存使用固定的1.5倍超卖标准。
 有一点需要特别注意，在生产环境中，不要使用BestEffort的方式，它会引发不确定的行为。
 ###kubernetes配置pod的资源限制
-pod中的container可以配置cpu/memory的request和limit。
-pod的cpu/memory request和limit为pod中所有container的cpu/memory的request和limit之和。
+pod中的```container```可以配置```cpu/memory```的```request```和```limit```。
+pod的```cpu/memory request```和```limit```为```pod```中所有```container```的```cpu/memory```的```request```和```limit```之和。
 如果pod中container使用的cpu/memory超出了定义cpu/memory的limit，则会killed它。
 如果pod cpu/memory的request超出了node的剩余cpu/memory，则不能调度分配到该节点，
 
@@ -157,7 +162,8 @@ spec:
     services.loadbalancers: "2"
     services.nodeports: "0"
 ```
-可配置的API Objects如下
+可配置的```API Objects```如下。
+
 String|API Object
 ------|---------
 "pods"|Pod

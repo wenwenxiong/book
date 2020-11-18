@@ -107,4 +107,20 @@ kubectl describe secrets/gitlab-secret -n gitlab-managed-apps | grep token:
 
 5 ,Project Namespace: 按照4的配置，namespace为gitlab-managed-apps
 
+6,在11.0.3上，Helm Tiller的安装名字空间在文件中固定
+```
+/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/kubernetes/helm.rb
+
+cat ./service/gitlab-rails/lib/gitlab/kubernetes/helm.rb
+module Gitlab
+  module Kubernetes
+    module Helm
+      HELM_VERSION = '2.7.0'.freeze
+#      NAMESPACE = 'gitlab-managed-apps'.freeze
+      NAMESPACE = 'gitlab-apps'.freeze
+    end
+  end
+end
+```
+
 ###启用kubernetes内嵌的gitlab-runner

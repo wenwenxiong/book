@@ -6,6 +6,7 @@ environment：运行function的环境（镜像）
 trigger：触发器，Fission支持http触发，事件触发
 
 fission自带的environment有
+
 Environment|	Image
 -----------|---------
 Binary (for executables or scripts)|	fission/binary-env

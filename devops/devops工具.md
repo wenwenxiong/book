@@ -18,6 +18,10 @@
 * deis
 * Heroku
 * flynn
+* Cloud Foundry2.0(Pivotal Cloud Foundry, garden(warden), buildpack vs dockerfile)
+* cfcr( Cloud Foundry Container Runtime,2018.9.27 新东西，官方文档资料还不完善)
+
+All this means that with PCF, your build artifact is your native deployment artifact, while in Kubernetes your build artifact is a docker image. With Kubernetes, you need to define the template for this docker image yourself in a Dockerfile, while in PCF you get this template automatically from a buildpack.
 
 
 
@@ -39,6 +43,19 @@ gofabric8 deploy -y
 gofabric8 secrets -y
 gofabric8 validate
 gofabric8 pull cd-pipeline
+```
+3,删除fabric8
+```
+kubectl delete deployment -l provider=fabric8
+kubectl delete rc -l provider=fabric8
+kubectl delete rs -l provider=fabric8
+kubectl delete service -l provider=fabric8
+kubectl delete secret -l provider=fabric8
+kubectl delete ingress -l provider=fabric8
+kubectl delete configmap -l provider=fabric8
+kubectl delete configmap -l provider=fabric8.io
+kubectl delete sa -l provider=fabric8
+kubectl delete ns -l provider=fabric8
 ```
 ###fabric8 安装到minikube
 1,下载gofabric8
