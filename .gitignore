@@ -1,0 +1,5 @@
+*~
+*.swp
+_book
+_book/*
+*.pdf
